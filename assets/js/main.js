@@ -132,22 +132,58 @@
   function intro() {
     if (!h.classList.contains('intro')) return;
     if (w.pageYOffset > 40 || location.hash.length > 1) { h.classList.remove('intro'); return; }
-    var hero = $('.hero'), neu = $('.hero-new', hero), wipe = $('.hero-wipe', hero), dot = $('.h1-dot', hero), nav = $('.nav');
+    var hero = $('.hero'), neu = $('.hero-new', hero), wipe = $('.hero-wipe', hero);
+    var line = $('i', wipe), fly = $('b', wipe), dot = $('.h1-dot', hero), nav = $('.nav');
+    var page = $('.ho-page', hero), count = $('.ho-count b', hero);
+    var prima = $('.h1-old', hero), dopo = $('.h1-new', hero), foot = $('.hero-foot', hero);
     var evs = ['pointerdown', 'keydown', 'wheel', 'touchstart'], finished = false;
-    var tl = gsap.timeline({ paused: true, defaults: { ease: 'power2.inOut' }, onComplete: finish });
-    tl.fromTo(neu, { clipPath: 'inset(0% 0% 0% 100%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.15 }, 0.45)
-      .fromTo(wipe, { xPercent: 100, autoAlpha: 1 }, { xPercent: 0, duration: 1.15 }, 0.45)
-      .to(wipe, { autoAlpha: 0, duration: 0.3, ease: 'power1.out' }, 1.6)
-      .fromTo(dot, { scale: 0 }, { scale: 1, duration: 0.55, ease: 'back.out(3)' }, 1.4)
-      .fromTo(nav, { autoAlpha: 0, y: -14 }, { autoAlpha: 1, y: 0, duration: 0.7, ease: 'expo.out' }, 1.35);
+    var split = w.SplitText ? SplitText.create(dopo, { type: 'chars', charsClass: 'hch' }) : null;
+    var chars = split ? split.chars : [dopo];
+    // the old site stays alone for T seconds, then the line sweeps it away in S seconds
+    var T = 1.6, S = 0.72, E = T + S, tgt = null;
+    function target() {
+      if (tgt) return tgt;
+      var r = dot.getBoundingClientRect(), wr = wipe.getBoundingClientRect();
+      tgt = { x: r.left + r.width / 2 - wr.left, y: r.top + r.height / 2 - (wr.top + wr.height / 2), s: dot.offsetWidth / (fly.offsetWidth || 28) };
+      return tgt;
+    }
+    gsap.set(wipe, { xPercent: 100, autoAlpha: 1 });
+    gsap.set(dot, { scale: 0 });
+    var tl = gsap.timeline({ paused: true, onComplete: finish });
+    // a new visitor on the old site, while its stripes keep moving (css)
+    tl.call(function () { if (count) count.textContent = '00438'; }, null, 0.75)
+      .fromTo(count, { scale: 1.3 }, { scale: 1, duration: 0.4, ease: 'back.out(3)', immediateRender: false }, 0.75)
+      // the line charges on the right edge
+      .fromTo(line, { scaleY: 0 }, { scaleY: 1, duration: 0.42, ease: 'expo.out' }, T - 0.36)
+      .fromTo(fly, { scale: 0 }, { scale: 1, duration: 0.42, ease: 'back.out(3)' }, T - 0.3)
+      // and sweeps right to left, pushing the old page away
+      .fromTo(neu, { clipPath: 'inset(0% 0% 0% 100%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: S, ease: 'expo.inOut' }, T)
+      .to(wipe, { xPercent: 0, duration: S, ease: 'expo.inOut' }, T)
+      .to(line, { scaleX: 3.2, duration: S / 2, ease: 'power2.in', yoyo: true, repeat: 1 }, T)
+      .to(fly, { scaleX: 1.5, scaleY: 0.72, duration: S / 2, ease: 'power2.in', yoyo: true, repeat: 1 }, T)
+      .to(page, { xPercent: -8, scale: 0.955, autoAlpha: 0.55, duration: S, ease: 'expo.inOut' }, T)
+      // the new hero comes in behind the line
+      .fromTo(prima, { x: 110, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.95, ease: 'expo.out' }, T + 0.1)
+      .fromTo(chars, { yPercent: 60, rotate: 9, autoAlpha: 0 }, { yPercent: 0, rotate: 0, autoAlpha: 1, duration: 0.85, ease: 'expo.out', stagger: { each: 0.045, from: 'end' } }, T + 0.14)
+      .fromTo(foot, { y: 28, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.75, ease: 'expo.out' }, T + 0.42)
+      .fromTo(nav, { autoAlpha: 0, y: -16 }, { autoAlpha: 1, y: 0, duration: 0.75, ease: 'expo.out' }, E - 0.15)
+      // the line fades, its dot flies into the headline and lands as the full stop
+      .to(line, { autoAlpha: 0, duration: 0.22, ease: 'power1.out' }, E)
+      .to(fly, { x: function () { return target().x; }, duration: 0.62, ease: 'power3.inOut' }, E)
+      .to(fly, { y: function () { return target().y; }, duration: 0.62, ease: 'back.in(1.4)' }, E)
+      .to(fly, { scale: function () { return target().s; }, duration: 0.62, ease: 'power2.inOut' }, E)
+      .set(fly, { autoAlpha: 0 }, E + 0.62)
+      .fromTo(dot, { scaleX: 1.55, scaleY: 0.5 }, { scaleX: 1, scaleY: 1, duration: 0.8, ease: 'elastic.out(1, 0.42)', immediateRender: false }, E + 0.62);
     function finish() {
       if (finished) return;
       finished = true;
+      tl.kill();
+      if (split) split.revert();
       h.classList.remove('intro');
-      gsap.set([neu, wipe, dot, nav], { clearProps: 'all' });
+      gsap.set([neu, wipe, line, fly, dot, nav, page, count, prima, foot], { clearProps: 'all' });
       evs.forEach(function (ev) { w.removeEventListener(ev, skip, true); });
     }
-    function skip() { tl.progress(1); finish(); }
+    function skip() { finish(); }
     evs.forEach(function (ev) { w.addEventListener(ev, skip, { capture: true, passive: true }); });
     var started = false;
     function go() { if (!started) { started = true; tl.play(); } }

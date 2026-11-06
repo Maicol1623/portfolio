@@ -125,7 +125,9 @@ html.lenis,html.lenis body{height:auto}
 .ho-foot{padding:12px 18px calc(14px + env(safe-area-inset-bottom,0px));border-top:1px solid #c8c8c8;font:12px/1.4 Verdana,Arial,sans-serif;color:#666}
 .hero-wipe{display:none;position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0}
 .intro .hero-wipe{display:block}
-.hero-wipe::before{content:"";position:absolute;top:0;bottom:0;left:-2px;width:4px;background:var(--yellow)}
+.hero-wipe i{position:absolute;top:0;bottom:0;left:-2px;width:4px;background:var(--yellow)}
+.intro .ho-uc{animation:ho-stripes .8s linear infinite}
+@keyframes ho-stripes{to{background-position:62.23px 0}}
 .hero-wipe b{position:absolute;left:-14px;top:calc(50% - 14px);width:28px;height:28px;border-radius:50%;background:var(--yellow);box-shadow:0 0 0 6px rgba(253,200,0,.22)}
 .intro .hero-new{clip-path:inset(0 0 0 100%)}
 .intro .nav{opacity:0;visibility:hidden}
