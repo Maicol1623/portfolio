@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prima e dopo | mk digital studio</title>
+<meta name="description" content="Tre esempi prima e dopo su negozi inventati: un sito, un profilo Instagram e una scheda Google. Prova gratis sul tuo negozio in 48 ore.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f4f5f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c121b" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="mk digital studio">
+<meta property="og:title" content="Tre esempi, prima e dopo">
+<meta property="og:description" content="Un sito, un profilo Instagram e una scheda Google. Sposta la linea gialla e guarda cosa cambia.">
+<meta property="og:url" content="https://maicol1623.github.io/portfolio/">
+<meta property="og:image" content="https://maicol1623.github.io/portfolio/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tre telefoni con un sito, un profilo Instagram e una scheda Google, metà prima e metà dopo">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Instrument+Sans:wght@400..700&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* Layout: phone-first single column. Hero = headline + three split phones fanned out. Each case = title, a tall phone you scrub with the yellow line, a Prima/Dopo table and the price. From 900px: phone left, notes right and sticky.
+   Principles: the yellow line is the only loud thing on the page; width carries hierarchy (condensed display, normal text, expanded small labels); the wrapper stays quiet so the three shop designs can shine. */
+:root{
+  --paper:#f4f5f7; --card:#ffffff; --ink:#1c293c; --muted:#586274; --rule:#d8dde5;
+  --signal:#fdc800; --bezel:#121a27; --amt:#1c293c; --amt-bar:#fdc800;
+  --band:#1c293c; --on-band:#f3f5f8; --band-muted:#aeb8c7;
+  --f-display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --f-text:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-ui:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0c121b; --card:#141c28; --ink:#e7ebf1; --muted:#98a3b4; --rule:#243045;
+    --bezel:#02050a; --amt:#fdc800; --amt-bar:rgba(253,200,0,.2); --band:#111a2a; --on-band:#eef1f6; --band-muted:#a5afbf; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0c121b; --card:#141c28; --ink:#e7ebf1; --muted:#98a3b4; --rule:#243045;
+  --bezel:#02050a; --amt:#fdc800; --amt-bar:rgba(253,200,0,.2); --band:#111a2a; --on-band:#eef1f6; --band-muted:#a5afbf; color-scheme:dark;
+}
+@property --x{syntax:'<percentage>';inherits:true;initial-value:50%}
+@property --h{syntax:'<percentage>';inherits:true;initial-value:50%}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-text);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--signal);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.lbl{font-stretch:118%;font-weight:640;font-size:13px;letter-spacing:.005em}
+
+/* top bar */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--paper) 86%,transparent);-webkit-backdrop-filter:saturate(1.5) blur(12px);backdrop-filter:saturate(1.5) blur(12px);border-bottom:1px solid var(--rule)}
+.nav .wrap{display:flex;align-items:center;gap:12px;height:58px}
+.brand{display:flex;align-items:center;gap:9px;color:var(--ink);text-decoration:none;font-weight:780;font-size:16px;letter-spacing:-.02em;white-space:nowrap}
+.brand svg{width:32px;height:32px;flex:none}
+.brand b{color:var(--signal)}
+.chips{margin-left:auto;display:flex;gap:6px}
+.chips a{font-stretch:112%;font-size:13px;font-weight:640;padding:7px 11px;border-radius:999px;color:var(--ink);text-decoration:none;border:1px solid var(--rule);background:var(--card);white-space:nowrap}
+.chips a[aria-current="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+@media (max-width:500px){.brand span{display:none}}
+
+/* hero */
+.hero{display:grid;gap:8px;padding-block:34px 10px}
+h1{font-family:var(--f-display);font-stretch:64%;font-weight:880;font-size:clamp(58px,17.5vw,124px);line-height:.86;letter-spacing:-.008em;margin:0;text-wrap:balance}
+.lede{font-size:18.5px;line-height:1.45;color:var(--muted);max-width:30em;margin:18px 0 0;text-wrap:pretty}
+.lede b{color:var(--ink);font-weight:650}
+.fan{position:relative;width:100%;max-width:540px;margin:26px auto 0;aspect-ratio:1/1.02}
+.fp{--h:50%;position:absolute;top:5%;left:50%;width:37%;aspect-ratio:9/19;margin:0;background:var(--bezel);border-radius:13% / 6.2%;padding:2.6%;box-shadow:0 1px 0 rgba(255,255,255,.07) inset,0 34px 60px -32px rgba(10,18,32,.65);animation:wipe 1.6s cubic-bezier(.2,.7,.15,1) both}
+.fp .sc{position:relative;width:100%;height:100%;border-radius:10.5% / 5%;overflow:hidden;background:#fff}
+.fp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.fp img.a{clip-path:inset(0 0 0 var(--h))}
+.fp .ln{position:absolute;top:0;bottom:0;left:var(--h);width:2px;margin-left:-1px;background:var(--signal);box-shadow:0 0 0 1px rgba(28,41,60,.25)}
+.fp .ln::after{content:"";position:absolute;top:50%;left:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 2px #fff,0 4px 10px rgba(0,0,0,.3)}
+.fp1{transform:translateX(-122%) translateY(9%) rotate(-7deg);animation-delay:.35s}
+.fp2{top:0;width:43%;transform:translateX(-50%);z-index:2;animation-delay:.15s}
+.fp3{transform:translateX(22%) translateY(9%) rotate(7deg);animation-delay:.55s}
+@keyframes wipe{from{--h:94%}to{--h:50%}}
+.note{margin-top:26px;padding:16px 18px;background:var(--card);border:1px solid var(--rule);border-radius:18px;max-width:40em}
+.note b{display:block;font-size:16.5px;font-weight:700;line-height:1.3}
+.note p{margin:4px 0 0;font-size:15.5px;color:var(--muted)}
+@media (min-width:900px){
+  .hero{grid-template-columns:minmax(0,1fr) minmax(0,520px);column-gap:56px;align-items:center;padding-block:56px 20px}
+  .hero-text{grid-column:1}
+  .fan{grid-column:2;grid-row:1 / span 2;margin:0}
+  .note{grid-column:1;align-self:start;margin-top:0}
+}
+
+/* case */
+.case{padding-block:72px 6px;scroll-margin-top:calc(68px + env(safe-area-inset-top,0px))}
+.case-head{max-width:44em;margin-bottom:22px}
+.kicker{display:flex;align-items:center;gap:10px;margin:0 0 12px;color:var(--muted)}
+.kicker>span:last-child{min-width:0;text-wrap:balance}
+.kicker .pill{flex:none;background:var(--ink);color:var(--paper);border-radius:999px;padding:4px 11px}
+h2{font-family:var(--f-display);font-stretch:68%;font-weight:840;font-size:clamp(40px,11vw,72px);line-height:.9;letter-spacing:-.005em;margin:0;text-wrap:balance}
+.case-grid{display:grid;gap:30px}
+@media (min-width:900px){
+  .case-grid{grid-template-columns:minmax(0,390px) minmax(0,1fr);gap:72px;align-items:start}
+  .notes{position:sticky;top:calc(96px + env(safe-area-inset-top,0px))}
+}
+.phone-col{width:100%;max-width:390px;margin:0 auto}
+.ctrl{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.seg{display:inline-flex;background:var(--card);border:1px solid var(--rule);border-radius:999px;padding:3px}
+.seg button{font:640 13.5px/1 var(--f-text);font-stretch:110%;color:var(--muted);background:none;border:0;border-radius:999px;padding:10px 14px;cursor:pointer;transition:background-color .2s,color .2s}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.hint{display:flex;align-items:center;gap:7px;color:var(--muted)}
+.hint i{display:inline-block;width:3px;height:16px;border-radius:2px;background:var(--signal);box-shadow:0 0 0 1px rgba(28,41,60,.18)}
+.cap{font-size:14px;color:var(--muted);text-align:center;margin:14px auto 0;max-width:30em;text-wrap:balance}
+
+/* phone + slider */
+.cmp{--x:50%;background:var(--bezel);border-radius:44px;padding:9px;box-shadow:0 1px 0 rgba(255,255,255,.07) inset,0 30px 60px -34px rgba(10,18,32,.7)}
+.cmp.anim{transition:--x .55s cubic-bezier(.25,.8,.25,1)}
+.inner{position:relative;touch-action:pan-y;cursor:ew-resize;-webkit-user-select:none;user-select:none}
+.screen{position:relative;container-type:inline-size;overflow:clip;border-radius:35px;background:#fff}
+.stack{display:grid}
+.layer{grid-area:1/1;min-width:0;font-family:var(--f-ui);font-size:14px;font-size:calc(100cqw / 24);line-height:1.35;color:#111;overflow:hidden}
+.layer.after{clip-path:inset(0 0 0 var(--x))}
+.island{position:absolute;top:0;left:50%;transform:translateX(-50%);font-size:14px;font-size:calc(100cqw / 24);width:6.4em;height:1.75em;margin-top:.6em;border-radius:1em;background:#000;z-index:3;pointer-events:none}
+.ex{position:absolute;left:12px;bottom:12px;z-index:3;pointer-events:none;font:650 11px/1 var(--f-text);font-stretch:112%;color:#fff;background:rgba(17,24,39,.74);padding:6px 9px;border-radius:999px}
+.divider{position:absolute;top:0;bottom:0;left:var(--x);width:0;z-index:4;pointer-events:none}
+.divider::before{content:"";position:absolute;top:0;bottom:0;left:-1.5px;width:3px;background:var(--signal);box-shadow:0 0 0 1px rgba(28,41,60,.3)}
+.knob{position:sticky;top:calc(50vh - 26px);margin:150px 0 0 -26px;width:52px;height:52px;border-radius:50%;background:var(--signal);color:#1c293c;display:grid;place-items:center;box-shadow:0 0 0 3px #fff,0 10px 22px rgba(0,0,0,.35);pointer-events:auto;touch-action:none;cursor:grab;transition:transform .2s}
+.knob:hover{transform:scale(1.06)}
+.knob .i{width:26px;height:26px;stroke-width:2.6}
+.knob:focus-visible{outline:3px solid #1c293c;outline-offset:4px}
+.knob .t{position:absolute;top:50%;transform:translateY(-50%);background:#1c293c;color:#fff;font:650 11.5px/1 var(--f-text);font-stretch:112%;padding:7px 9px;border-radius:999px;white-space:nowrap;transition:opacity .2s;pointer-events:none}
+.knob .t.l{right:calc(100% + 12px)}
+.knob .t.r{left:calc(100% + 12px)}
+.edge-l .knob .t.l,.edge-r .knob .t.r{opacity:0}
+.drag .knob{cursor:grabbing;transform:scale(1.08)}
+
+/* notes */
+.pd{width:100%;border-collapse:collapse;font-size:16px;line-height:1.35}
+.pd caption{text-align:left;padding-bottom:12px;color:var(--muted)}
+.pd th{text-align:left;padding:0 0 9px;border-bottom:2px solid var(--ink);width:50%}
+.pd th:first-child{color:var(--muted)}
+.pd th:last-child{padding-left:16px}
+.pd td{padding:11px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.pd td:first-child{color:var(--muted);padding-right:16px}
+.pd td:last-child{padding-left:16px;font-weight:600;border-left:1px solid var(--rule)}
+.price{margin-top:30px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.price>:first-child{flex:1 1 auto;min-width:0}
+.price>:last-child{flex:none}
+.price b{display:block;font-size:19px;line-height:1.25;font-weight:680}
+.price span{display:block;color:var(--muted);font-size:15px;margin-top:5px}
+.price strong{display:block;font-family:var(--f-display);font-stretch:64%;font-weight:900;font-size:64px;line-height:.84;white-space:nowrap;background:linear-gradient(transparent 50%,var(--amt-bar) 50% 94%,transparent 94%);padding:0 .03em;color:var(--amt)}
+.price small{display:block;text-align:right;margin-top:8px;color:var(--muted)}
+.alt{font-size:15px;color:var(--muted);margin:18px 0 0;padding-top:16px;border-top:1px solid var(--rule)}
+.alt b{color:var(--ink);font-weight:650}
+
+/* call to action */
+.cta{margin-top:84px;background:var(--band);color:var(--on-band)}
+.cta .wrap{padding-block:56px 60px}
+.cta h2{color:var(--on-band);max-width:9.5em}
+.cta p{color:var(--band-muted);font-size:18px;max-width:31em;margin:18px 0 0}
+.num{display:flex;flex-wrap:wrap;align-items:center;gap:12px 14px;margin-top:30px}
+.num .lbl{width:100%;color:var(--band-muted)}
+.num strong{width:100%;font-family:var(--f-display);font-stretch:64%;font-weight:880;font-size:clamp(56px,17vw,104px);line-height:.88;letter-spacing:-.005em;-webkit-user-select:all;user-select:all}
+.btn{font:680 15px/1 var(--f-text);border-radius:999px;padding:14px 19px;border:0;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+.btn .i{width:18px;height:18px}
+.btn.y{background:var(--signal);color:#1c293c}
+.btn.o{background:transparent;color:var(--on-band);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--on-band) 45%,transparent)}
+.cta .who{font-size:15px;color:var(--band-muted);margin:26px 0 0}
+.cta-grid{display:grid;gap:36px}
+.qr{margin:0;justify-self:start;display:grid;gap:12px;width:min(100%,236px);background:#fff;color:#1c293c;border-radius:20px;padding:18px 18px 15px}
+.qr svg{display:block;width:100%;height:auto;shape-rendering:crispEdges}
+.qr figcaption{font-size:13.5px;line-height:1.38;color:#3c4656;text-align:center;text-wrap:balance}
+@media (min-width:900px){.cta-grid{grid-template-columns:minmax(0,1fr) auto;column-gap:72px;align-items:center}.qr{width:268px}}
+footer .wrap{padding-block:30px 48px;display:grid;gap:10px;font-size:13.5px;color:var(--muted)}
+footer p{margin:0;max-width:64em}
+footer a{color:inherit}
+.credits summary{width:fit-content;cursor:pointer;font-size:12.5px;padding:4px 0}
+.credits p{margin-top:6px;font-size:12.5px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.cmp.anim{transition:none}.fp{animation:none}.tn-badge svg{animation:none}.knob,.seg button{transition:none}}
+
+/* ===== shared phone bits: fixed colors, they are screens ===== */
+.sb{display:flex;align-items:center;justify-content:space-between;height:2.9em;padding:0 1.65em 0 2.05em;font-weight:650;font-size:1em;letter-spacing:.01em;position:relative;z-index:1}
+.sb.dk{color:#111}.sb.lt{color:#fff}
+.sbi{display:flex;align-items:center;gap:.35em}
+.sig{display:flex;align-items:flex-end;gap:.13em;height:.72em}
+.sig i{display:block;width:.2em;background:currentColor;border-radius:.06em}
+.sig i:nth-child(1){height:35%}.sig i:nth-child(2){height:58%}.sig i:nth-child(3){height:80%}.sig i:nth-child(4){height:100%}
+.bat{display:block;width:1.6em;height:.78em;border:.09em solid currentColor;border-radius:.24em;position:relative;opacity:.95}
+.bat::after{content:"";position:absolute;top:.1em;bottom:.1em;left:.1em;right:30%;background:currentColor;border-radius:.1em}
+
+/* ===== Trattoria, prima: a 2014 desktop template squeezed on a phone ===== */
+.to{background:#cfc2a8 repeating-linear-gradient(45deg,rgba(0,0,0,.04) 0 .3em,transparent .3em .6em)}
+.to .sb{background:#fff}
+.to-page{font-family:Georgia,"Times New Roman",serif;font-size:.4em;margin:1.3em 3% 0;background:#fffdf6;color:#333;box-shadow:0 0 1.2em rgba(0,0,0,.28);line-height:1.38}
+.to-head{display:flex;justify-content:space-between;align-items:center;gap:1em;background:#3b2a20;padding:1.7em 2em;border-bottom:.35em solid #e8a33d}
+.to-logo{font-size:3.5em;color:#f3d9a4;font-style:italic;line-height:1}
+.to-logo small{display:block;font-size:.3em;font-style:normal;letter-spacing:.3em;color:#c9b38a;text-transform:uppercase;margin-top:.5em}
+.to-tel{background:linear-gradient(#fff3d6,#e3c995);color:#5a3b1c;font:700 1.25em/1.2 Arial,sans-serif;padding:.55em .8em;border-radius:.3em;filter:blur(.035em);text-align:center}
+.to-nav{display:flex;flex-wrap:wrap;background:#7a1f1f;padding:0 1em}
+.to-nav span{color:#fff;font:700 1.15em Arial,sans-serif;padding:.85em 1.1em;text-transform:uppercase;letter-spacing:.04em}
+.to-nav span.on{background:#e8a33d;color:#3b2a20}
+.to-slider{position:relative}
+.to-slider img{display:block;width:100%;aspect-ratio:2.6/1;object-fit:cover}
+.to-slider .arr{position:absolute;top:50%;transform:translateY(-50%);width:2.6em;height:2.6em;border-radius:50%;background:rgba(0,0,0,.5);color:#fff;display:grid;place-items:center;font:700 1.5em/1 Arial,sans-serif}
+.to-slider .l{left:1em}.to-slider .r{right:1em}
+.to-slider .dots{position:absolute;bottom:.7em;left:0;right:0;text-align:center;color:#fff;font:1.4em Arial,sans-serif;letter-spacing:.35em}
+.to-cols{display:grid;grid-template-columns:minmax(0,1fr) 30%;gap:2em;padding:2em}
+.to-main h4{font-size:2.4em;color:#7a1f1f;font-weight:400;margin:0 0 .5em;border-bottom:.08em solid #e8a33d;padding-bottom:.2em}
+.to-main p{font-size:1.25em;margin:0 0 .8em;text-align:justify}
+.to-main a{color:#7a1f1f;text-decoration:underline;font-weight:700}
+.to-main h5{font-size:1.6em;color:#7a1f1f;font-weight:400;margin:1.1em 0 .5em}
+.to-gal{display:grid;grid-template-columns:repeat(4,1fr);gap:.7em}
+.to-gal img{width:100%;aspect-ratio:1;object-fit:cover;border:.25em solid #fff;box-shadow:0 0 .4em rgba(0,0,0,.35);display:block}
+.to-w{background:#f3ead8;border:1px solid #dccaa5;padding:1em;margin-bottom:1.2em;font-size:1.15em}
+.to-w b{display:block;color:#7a1f1f;font-size:1.25em;font-weight:400;margin-bottom:.5em;border-bottom:1px solid #dccaa5;padding-bottom:.3em}
+.to-fb{display:grid;place-items:center;height:6.5em;background:#e9ebee;border:1px solid #cfd3da;color:#8a8f99;font:1em Arial,sans-serif;text-align:center}
+.to-inp{display:block;height:1.9em;background:#fff;border:1px solid #bbb;margin:.4em 0}
+.to-btn{display:inline-block;background:#7a1f1f;color:#fff;font:700 .9em Arial,sans-serif;padding:.45em .9em}
+.to-foot{background:#3b2a20;color:#c9b38a;text-align:center;font:1.05em/1.4 Arial,sans-serif;padding:1.3em}
+.to-cookie{margin-top:1.4em;background:#222;color:#eee;font:400 .82em/1.42 Arial,Helvetica,sans-serif;padding:1.1em 1.3em 1.4em}
+.to-cookie .ok{display:inline-block;background:#4caf50;color:#fff;padding:.3em 1em;margin:.7em .7em 0 0;font-weight:700}
+.to-cookie u{color:#9cf}
+
+/* ===== Trattoria, dopo: editorial mobile site ===== */
+.tn{background:#eef0eb;color:#191b18;font-family:"Instrument Sans",var(--f-ui)}
+.tn-top{background:#1e3a30;color:#eef0eb;padding-bottom:4.6em}
+.tn-nav{display:flex;justify-content:space-between;align-items:center;padding:.4em 1.5em 0}
+.tn-mark{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:1.65em;line-height:1;letter-spacing:-.01em}
+.tn-burger{display:grid;gap:.3em;width:1.55em}
+.tn-burger i{display:block;height:.12em;background:currentColor;border-radius:.1em}
+.tn-hero{padding:2.6em 1.5em 0}
+.tn-kick{font-size:.82em;color:#d2b47a;margin:0 0 1em}
+.tn-h{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:3.45em;line-height:.92;letter-spacing:-.018em;margin:0}
+.tn-pic{position:relative;margin:-3.4em 1.5em 0}
+.tn-pic img{display:block;width:100%;aspect-ratio:5/4;object-fit:cover;border-radius:.3em}
+.tn-badge{position:absolute;right:-.7em;top:-2.9em;width:6em;height:6em;border-radius:50%;background:#a32a2f;color:#f6ece0;display:grid;place-items:center;box-shadow:0 .5em 1.2em rgba(0,0,0,.22)}
+.tn-badge svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 24s linear infinite}
+.tn-badge text{font-family:"Instrument Sans",var(--f-ui);font-size:10.6px;font-weight:600;letter-spacing:.6px;fill:currentColor}
+.tn-badge b{width:.62em;height:.62em;border-radius:50%;background:#8be29d;box-shadow:0 0 0 .32em rgba(139,226,157,.25)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tn-acts{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:.45em;padding:1.35em 1.5em .2em}
+.tn-acts span{display:flex;align-items:center;justify-content:center;gap:.4em;height:3.1em;border-radius:2em;border:1px solid #c8ccc2;font-size:.84em;font-weight:600;color:#1e3a30;background:#fff;white-space:nowrap}
+.tn-acts .pri{background:#1e3a30;border-color:#1e3a30;color:#eef0eb}
+.tn-acts .i{width:1.2em;height:1.2em}
+.tn-sec{padding:2.2em 1.5em 0}
+.tn-sh{display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid #191b18;padding-bottom:.5em;margin-bottom:1.15em}
+.tn-sh h4{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:2.05em;line-height:1;margin:0;letter-spacing:-.01em}
+.tn-sh span{font-size:.8em;color:#5c6158}
+.tn-feat{margin:0 0 .4em}
+.tn-feat img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:.3em}
+.tn-feat figcaption{display:flex;justify-content:space-between;align-items:baseline;gap:.6em;margin-top:.65em;font-size:.95em}
+.tn-feat figcaption b{font-weight:600}
+.tn-feat figcaption small{display:block;font-size:.84em;color:#5c6158;font-weight:400;margin-top:.15em}
+.tn-feat figcaption em{font-style:normal;font-weight:600;font-variant-numeric:tabular-nums}
+.tn-list{margin:0}
+.tn-list dt{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:1.3em;color:#a32a2f;margin:1.05em 0 .25em}
+.tn-list dd{display:flex;align-items:baseline;gap:.45em;margin:0;padding:.34em 0;font-size:.95em}
+.tn-list dd i{flex:1;border-bottom:1px dotted #8d9387;transform:translateY(-.28em)}
+.tn-list dd em{font-style:normal;font-variant-numeric:tabular-nums;font-weight:600}
+.tn-btn{display:flex;justify-content:center;align-items:center;height:3.1em;margin-top:1.3em;border:1px solid #191b18;border-radius:2em;font-size:.88em;font-weight:600}
+.tn-strip-h{display:flex;justify-content:space-between;align-items:baseline;padding:2.3em 1.5em .8em}
+.tn-strip-h b{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:1.45em}
+.tn-strip-h span{font-size:.8em;color:#5c6158}
+.tn-strip{display:grid;grid-template-columns:repeat(3,44%);gap:.55em;padding-left:1.5em;overflow:hidden}
+.tn-strip figure{margin:0}
+.tn-strip img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:.3em;display:block}
+.tn-strip figcaption{font-size:.78em;margin-top:.45em;color:#3c4039}
+.tn-quote{margin:2.4em 0 0;background:#1e3a30;color:#eef0eb;padding:2.3em 1.5em 2.5em}
+.tn-quote p{font-family:"Instrument Serif",Georgia,serif;font-size:2.15em;line-height:1.02;margin:0;letter-spacing:-.01em}
+.tn-quote cite{display:block;margin-top:1em;font-style:normal;font-size:.82em;color:#d2b47a}
+.tn-dehors{position:relative}
+.tn-dehors img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+.tn-dehors::after{content:"";position:absolute;inset:55% 0 0;background:linear-gradient(transparent,rgba(10,16,12,.6))}
+.tn-dehors p{position:absolute;left:1.15em;right:1.15em;bottom:1.1em;margin:0;color:#fff;font-family:"Instrument Serif",Georgia,serif;font-size:1.9em;line-height:1;z-index:1}
+.tn-map{position:relative;height:10.5em;border-radius:.3em;overflow:hidden;margin:0 0 1em;background:
+  linear-gradient(90deg,transparent calc(50% - .32em),#fbfcf9 calc(50% - .32em) calc(50% + .32em),transparent calc(50% + .32em)) .8em 0/5.4em 100%,
+  linear-gradient(0deg,transparent calc(50% - .28em),#fbfcf9 calc(50% - .28em) calc(50% + .28em),transparent calc(50% + .28em)) 0 .6em/100% 3.8em,
+  radial-gradient(ellipse 5.5em 2.7em at 82% 78%,#bfd2b5 98%,transparent 100%),#dfe3d9}
+.tn-map::before{content:"";position:absolute;left:-15%;right:-15%;top:30%;height:1.1em;background:#b9cfd6;transform:rotate(-12deg);border-radius:1em}
+.tn-map::after{content:"";position:absolute;left:-10%;right:-10%;top:64%;height:.75em;background:#fbfcf9;transform:rotate(8deg)}
+.tn-pin{position:absolute;left:47%;top:38%;width:1.9em;height:1.9em;border-radius:50% 50% 50% 0;background:#a32a2f;transform:rotate(-45deg);z-index:1;box-shadow:.15em .15em .35em rgba(0,0,0,.28)}
+.tn-pin::after{content:"";position:absolute;inset:.58em;border-radius:50%;background:#eef0eb}
+.tn-addr b{display:block;font-size:1em;font-weight:600}
+.tn-addr span{display:block;font-size:.85em;color:#5c6158;margin-top:.1em}
+.tn-hours{width:100%;border-collapse:collapse;margin-top:1.1em;font-size:.88em}
+.tn-hours th{text-align:left;font-weight:600;padding:.55em 0;border-top:1px solid #c8ccc2}
+.tn-hours td{text-align:right;padding:.55em 0;border-top:1px solid #c8ccc2;font-variant-numeric:tabular-nums}
+.tn-foot{margin-top:2.4em;background:#191b18;color:#eef0eb;padding:2.2em 1.5em 3.8em}
+.tn-foot .tn-mark{font-size:3.4em;display:block}
+.tn-foot small{display:block;color:#9aa093;margin-top:.7em;font-size:.78em}
+
+/* ===== Instagram-style profile ===== */
+.ig{background:#fff;color:#111}
+.ig-top{display:flex;align-items:center;gap:.8em;padding:.35em 1.2em .55em}
+.ig-top .i{width:1.4em;height:1.4em}
+.ig-top .h{flex:1;font-weight:700;font-size:1.05em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ig-head{display:flex;align-items:center;gap:1.3em;padding:.45em 1.2em .2em}
+.ig-av{width:5.8em;height:5.8em;border-radius:50%;object-fit:cover;flex:none;display:block}
+.ig-av.mono{display:grid;place-items:center;background:#3e1f35;color:#f1e7de;font-family:"Bodoni Moda",Didot,"Bodoni 72",serif;box-shadow:0 0 0 .2em #fff,0 0 0 .32em #cdb497}
+.ig-av.mono span{font-size:3em;line-height:1;font-weight:500;margin-top:-.06em}
+.ig-stats{flex:1;display:flex;justify-content:space-around;text-align:center}
+.ig-stats b{display:block;font-size:1.12em;font-weight:700}
+.ig-stats span{font-size:.82em}
+.ig-bio{padding:.6em 1.2em 0;font-size:.9em;line-height:1.4}
+.ig-bio b{display:block;font-weight:700}
+.ig-bio .cat{display:block;color:#737373}
+.ig-bio p{margin:.05em 0}
+.ig-bio .lnk{display:flex;align-items:center;gap:.3em;color:#00376b;font-weight:600}
+.ig-bio .lnk .i{width:1em;height:1em}
+.ig-btns{display:flex;gap:.4em;padding:.85em 1.2em .3em}
+.ig-btns span{flex:1;text-align:center;background:#efefef;border-radius:.6em;padding:.58em 0;font-weight:650;font-size:.84em}
+.ig-btns .p{background:#2f6fed;color:#fff}
+.ig-hl{display:flex;gap:.8em;padding:.9em 1.2em .95em;overflow:hidden}
+.ig-hl>div{display:flex;flex-direction:column;align-items:center;gap:.35em;font-size:.76em;width:5em;flex:none}
+.ig-hl .c{width:5.3em;height:5.3em;border-radius:50%;border:.1em solid #d8d8d8;padding:.22em;display:block}
+.ig-hl .c b{width:100%;height:100%;border-radius:50%;display:grid;place-items:center;background:#efe4dc;color:#3e1f35}
+.ig-hl .c b .i{width:2.2em;height:2.2em;stroke-width:1.5}
+.ig-hl .c b.eu{font:500 2.3em/1 "Bodoni Moda",Didot,serif}
+.ig-tabs{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #dbdbdb;height:2.9em;align-items:stretch}
+.ig-tabs span{display:grid;place-items:center;color:#8e8e8e}
+.ig-tabs span.on{color:#111;box-shadow:inset 0 -.1em 0 #111}
+.ig-tabs .i{width:1.35em;height:1.35em}
+.ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.ig-grid>*{aspect-ratio:3/4;overflow:hidden;position:relative;display:block;width:100%;min-width:0}
+.ig-grid img{object-fit:cover;height:100%}
+.tl{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:.6em;line-height:1.05}
+.tl-chiuso{background:#ffe600;color:#e10600;font:900 1.15em/1.02 Arial,Helvetica,sans-serif;text-transform:uppercase}
+.tl-promo{background:linear-gradient(135deg,#ff2bd6,#20d0f0);color:#fff;font:900 1.3em/1 Impact,"Arial Black",Arial,sans-serif;text-shadow:.07em .07em 0 #000;text-transform:uppercase}
+.tl-feste{background:radial-gradient(circle,#ffd54a 0 .09em,transparent .12em) 0 0/1.3em 1.3em,radial-gradient(circle,#fff3 0 .07em,transparent .1em) .65em .5em/1.3em 1.3em,#7a0010;color:#ffd54a;font:italic 700 1.28em/1.05 Georgia,"Times New Roman",serif}
+.tl-shot{background:#ece5dd;padding:0;justify-content:flex-start;align-items:stretch;gap:.35em}
+.tl-shot i{display:block}
+.tl-shot .bar{height:1.7em;background:#075e54;margin-bottom:.3em}
+.tl-shot .bub{height:1.25em;width:70%;margin:0 .45em;border-radius:.45em;background:#fff}
+.tl-shot .bub.me{align-self:flex-end;background:#dcf8c6;width:56%}
+.tl-shot .bub.s{width:38%}
+.tl-n{font-family:"Bodoni Moda",Didot,serif;text-align:left;align-items:flex-start;padding:.85em .8em}
+.tl-n small{font:600 .5em/1.2 var(--f-ui);letter-spacing:.02em;opacity:.85}
+.tl-n .mk{position:absolute;right:.75em;bottom:.65em;font:500 .8em/1 "Bodoni Moda",Didot,serif;opacity:.75}
+.tl-c{background:#3e1f35;color:#f1e7de;justify-content:space-between}
+.tl-c strong{font-size:1.3em;font-style:italic;font-weight:500;line-height:1.02;margin-bottom:.9em}
+.tl-c .car{position:absolute;top:.75em;right:.7em;width:.8em;height:.8em;border:.09em solid #f1e7de;border-radius:.12em;box-shadow:.18em -.18em 0 -.04em #3e1f35,.18em -.18em 0 .05em #f1e7de}
+.tl-l{background:#efe4dc;color:#3e1f35;justify-content:flex-start;align-items:stretch}
+.tl-l strong{font-size:1.25em;font-weight:500;margin-bottom:.55em}
+.tl-l p{display:flex;justify-content:space-between;gap:.3em;margin:0;padding:.32em 0;font:600 .58em/1.15 var(--f-ui);border-bottom:1px solid #d6c4b5}
+.tl-g{background:#d9c3a5;color:#3e1f35;justify-content:space-between}
+.tl-g strong{font-size:1.4em;font-weight:500;line-height:.98;margin-bottom:.9em}
+
+/* ===== Map listing ===== */
+.gm{background:#fff;color:#1f1f1f}
+.gm-search{position:relative;z-index:1;margin:.15em .9em -2.9em;display:flex;align-items:center;gap:.7em;background:#fff;border-radius:2em;padding:.72em 1em;box-shadow:0 .1em .45em rgba(0,0,0,.2);font-size:.95em}
+.gm-search .i{width:1.25em;height:1.25em;color:#444}
+.gm-map{position:relative;height:9.5em;background:
+  linear-gradient(90deg,transparent calc(50% - .3em),#fff calc(50% - .3em) calc(50% + .3em),transparent calc(50% + .3em)) 1.2em 0/5.5em 100%,
+  linear-gradient(0deg,transparent calc(50% - .28em),#fff calc(50% - .28em) calc(50% + .28em),transparent calc(50% + .28em)) 0 .8em/100% 3.9em,
+  radial-gradient(ellipse 6em 2.6em at 18% 78%,#cfe3c0 98%,transparent 100%),#ece8df}
+.gm-map::after{content:"";position:absolute;left:-10%;right:-10%;top:58%;height:.75em;background:#ffe9a8;transform:rotate(9deg)}
+.gm-pin{position:absolute;left:58%;top:40%;width:1.8em;height:1.8em;border-radius:50% 50% 50% 0;background:#d93025;transform:rotate(-45deg);z-index:1;box-shadow:.15em .15em .3em rgba(0,0,0,.25)}
+.gm-pin::after{content:"";position:absolute;inset:.55em;border-radius:50%;background:#7a1510}
+.gm-sheet{position:relative;background:#fff;border-radius:1.2em 1.2em 0 0;margin-top:-1.3em;padding:.55em 0 3.4em;box-shadow:0 -.2em .7em rgba(0,0,0,.1)}
+.gm-grab{display:block;width:2.7em;height:.3em;border-radius:.2em;background:#d5d5d5;margin:0 auto .85em}
+.gm-ph{position:relative;display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:.2em;height:12em;margin:0 0 .95em}
+.gm-ph img{width:100%;height:100%;object-fit:cover;display:block;min-width:0;min-height:0}
+.gm-ph img.big{grid-row:1/3}
+.gm-n{position:absolute;right:.6em;bottom:.6em;background:rgba(0,0,0,.66);color:#fff;font-size:.72em;font-weight:650;padding:.3em .6em;border-radius:.4em}
+.gm-ph.one{grid-template-columns:1.35fr 1fr;grid-template-rows:1fr;gap:.45em;height:8.5em;padding:0 1.1em}
+.gm-ph.one figure{margin:0;position:relative;border-radius:.7em;overflow:hidden}
+.gm-ph.one figcaption{position:absolute;left:.45em;bottom:.45em;font-size:.66em;background:rgba(0,0,0,.62);color:#fff;padding:.2em .45em;border-radius:.3em}
+.gm-add{border:1.5px dashed #c3c3c3;border-radius:.7em;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:.35em;color:#1a62d6;font-size:.8em;font-weight:650;text-align:center}
+.gm-add .i{width:1.7em;height:1.7em}
+.gm-body{padding:0 1.1em}
+.gm-name{font-size:1.62em;line-height:1.15;margin:0 0 .15em;font-weight:500;letter-spacing:-.005em}
+.gm-rate,.gm-cat,.gm-status{font-size:.9em;color:#4d5156}
+.gm-rate{display:flex;align-items:center;gap:.35em}
+.st{color:#f2a000;letter-spacing:.03em}
+.st s{text-decoration:none;color:#d6d6d6}
+.gm-status{margin-top:.15em}
+.ok{color:#188038;font-weight:650}
+.na{color:#80868b;font-style:italic}
+.gm-acts{display:flex;gap:.35em;padding:1em .8em .9em;border-bottom:1px solid #e8e8e8;overflow:hidden}
+.gm-acts span{display:flex;flex-direction:column;align-items:center;gap:.4em;font-size:.72em;color:#1a62d6;font-weight:650;flex:1;min-width:0;white-space:nowrap}
+.gm-acts span i{width:3.3em;height:3.3em;border-radius:50%;display:grid;place-items:center;background:#e8f0fe}
+.gm-acts span i .i{width:1.5em;height:1.5em}
+.gm-acts span.first i{background:#1a62d6;color:#fff}
+.gm-acts span.off{color:#a3a8ad}
+.gm-acts span.off i{background:#f1f3f4}
+.gm-desc{padding:.95em 1.1em;border-bottom:1px solid #e8e8e8;font-size:.88em;line-height:1.45}
+.gm-desc small{display:block;color:#5f6368;font-size:.85em;font-weight:650;margin-bottom:.2em}
+.gm-info{list-style:none;margin:0;padding:.35em 0;border-bottom:1px solid #e8e8e8}
+.gm-info li{display:grid;grid-template-columns:2.3em minmax(0,1fr);align-items:start;padding:.62em 1.1em;font-size:.88em}
+.gm-info li>.i{width:1.3em;height:1.3em;color:#1a62d6;margin-top:.05em}
+.gm-info .add,.gm-info .lnk{color:#1a62d6;font-weight:600}
+.gm-hours{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.18em .9em}
+.gm-hours .h1{grid-column:1/-1;margin-bottom:.2em}
+.gm-hours em{font-style:normal;color:#5f6368}
+.gm-chips{display:flex;flex-wrap:wrap;gap:.4em;padding:.85em 1.1em}
+.gm-chips span{border:1px solid #dadce0;border-radius:2em;padding:.32em .75em;font-size:.76em;color:#3c4043}
+.gm-sec{padding:.95em 1.1em 0;border-top:1px solid #e8e8e8}
+.gm-sec.first{border-top:0}
+.gm-h{font-size:1.05em;font-weight:650;margin:0 0 .65em}
+.gm-prod{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.5em;padding-bottom:1em}
+.gm-prod div{font-size:.7em;line-height:1.2;font-weight:600}
+.gm-prod img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:.55em;display:block;margin-bottom:.35em}
+.rev{padding-bottom:.4em}
+.rev .who{display:flex;align-items:center;gap:.6em;font-size:.88em}
+.rev .av{width:2.1em;height:2.1em;border-radius:50%;background:#7b5ea7;color:#fff;display:grid;place-items:center;font-weight:650;flex:none}
+.rev .who b{display:block;font-weight:650}
+.rev .who small{display:block;color:#5f6368;font-size:.85em}
+.rev .st{display:block;margin-top:.45em;font-size:.85em}
+.rev p{font-size:.88em;margin:.3em 0 0;line-height:1.42}
+.reply{margin-top:.75em;background:#f1f3f4;border-radius:.7em;padding:.65em .8em;font-size:.84em;line-height:1.42}
+.reply b{display:block;font-weight:650}
+.reply small{display:block;color:#5f6368;margin-bottom:.25em}
+.noreply{margin-top:.65em;font-size:.78em;color:#9aa0a6;font-style:italic}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-nav" viewBox="0 0 24 24"><path d="M3.5 11 20.5 3.5 13 20.5l-2-7.5z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5.5 3.5h3.2l1.8 4.6-2.3 1.5a11 11 0 0 0 6.2 6.2l1.5-2.3 4.6 1.8v3.2a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 3.5 5.7a2 2 0 0 1 2-2.2z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.4 7.4L3.5 20.5l1.5-4.4a8.4 8.4 0 1 1 15.5-4.5z"/></symbol>
+  <symbol id="i-save" viewBox="0 0 24 24"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><path d="M4.5 12.5v6.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5v-6.5M16 7l-4-4-4 4M12 3v12"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11.4a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.6" r="2.6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.6 3.5 5.4 3.5 8.5s-1.1 5.9-3.5 8.5c-2.4-2.6-3.5-5.4-3.5-8.5s1.1-5.9 3.5-8.5z"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="1"/><path d="M3.5 9.2h17M3.5 14.8h17M9.2 3.5v17M14.8 3.5v17"/></symbol>
+  <symbol id="i-reel" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M3.5 8.5h17M9 3.5l2.5 5M14.5 3.5l2.5 5M10.5 12v5l4-2.5z"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><circle cx="12" cy="10" r="2.7"/><path d="M7 18.5c1-2.3 2.8-3.5 5-3.5s4 1.2 5 3.5"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-dots" viewBox="0 0 24 24"><path d="M5 12h.01M12 12h.01M19 12h.01" stroke-width="3.2"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l1.6-2.5h6.8L17 8h3v11H4z"/><circle cx="12" cy="13.2" r="3.3"/></symbol>
+  <symbol id="i-arrows" viewBox="0 0 24 24"><path d="M9 6.5 3.8 12 9 17.5M15 6.5l5.2 5.5-5.2 5.5"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="12" height="12" rx="2"/><path d="M15.5 8.5V5a1.5 1.5 0 0 0-1.5-1.5H5A1.5 1.5 0 0 0 3.5 5v9A1.5 1.5 0 0 0 5 15.5h3.5"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3.1-3.1a4 4 0 0 0-5.7-5.7l-1.2 1.2M14 10a4 4 0 0 0-5.7 0l-3.1 3.1a4 4 0 0 0 5.7 5.7l1.2-1.2"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3.8c3.1 4 5.6 7.1 5.6 10.1a5.6 5.6 0 0 1-11.2 0c0-3 2.5-6.1 5.6-10.1z"/></symbol>
+  <symbol id="i-scissors" viewBox="0 0 24 24"><circle cx="6.2" cy="7" r="2.6"/><circle cx="6.2" cy="17" r="2.6"/><path d="M8.4 8.4 19.5 16.8M8.4 15.6 19.5 7.2"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3.5l1.9 5.3 5.3 1.9-5.3 1.9L12 17.9l-1.9-5.3-5.3-1.9 5.3-1.9z"/></symbol>
+</svg>
+
+<nav class="nav" aria-label="Esempi">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="mk digital studio, torna su">
+      <svg viewBox="0 0 1080 1080" aria-hidden="true"><circle cx="540" cy="540" r="540" fill="#1c293c"/><path fill="#fbfbf9" d="M175.3 713.9H265.1V577.8C265.1 556.2 276.8 542.7 295 542.7C313.7 542.7 325.3 556.2 325.3 577.8V713.9H410.7V577.8C410.7 556.2 422.4 542.7 440.3 542.7C459 542.7 470.9 556.2 470.9 577.8V713.9H560.7V555.3C560.7 504.3 527.9 471.3 480.3 471.3C446.8 471.3 415.4 487.7 403.5 520.7C394.1 487.5 366 471.3 334.8 471.3C303.3 471.3 274.8 487.5 261.5 523.2V476.7H175.3ZM579.4 713.9H669.2V648.1L682.2 631.9L732.5 713.9H834.5L748.3 580.9L831.8 476.7H730.3L670.1 554H669.2V379.2H579.4Z"/><circle cx="886" cy="675.9" r="38" fill="#fdc800"/></svg>
+      <span>mk digital studio<b>.</b></span>
+    </a>
+    <div class="chips">
+      <a href="#sito">Sito</a>
+      <a href="#instagram">Instagram</a>
+      <a href="#google">Google</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap" id="top">
+  <div class="hero-text">
+    <h1>Tre esempi, prima e dopo.</h1>
+    <p class="lede">Un sito, un profilo Instagram e una scheda Google. <b>Sposta la linea gialla</b> sui telefoni e guarda cosa cambia.</p>
+  </div>
+  <div class="fan" aria-hidden="true">
+    <figure class="fp fp1"><div class="sc"><img src="img2/fan-ig-prima.jpg" alt=""><img class="a" src="img2/fan-ig-dopo.jpg" alt=""><i class="ln"></i></div></figure>
+    <figure class="fp fp2"><div class="sc"><img src="img2/fan-sito-prima.jpg" alt=""><img class="a" src="img2/fan-sito-dopo.jpg" alt=""><i class="ln"></i></div></figure>
+    <figure class="fp fp3"><div class="sc"><img src="img2/fan-gm-prima.jpg" alt=""><img class="a" src="img2/fan-gm-dopo.jpg" alt=""><i class="ln"></i></div></figure>
+  </div>
+  <aside class="note">
+    <b>Prova gratis sul tuo negozio</b>
+    <p>Questi sono esempi su negozi inventati. Sul tuo ti preparo una prova in 48 ore e decidi dopo averla vista.</p>
+  </aside>
+</header>
+
+<main>
+<!-- ================= SITO ================= -->
+<section class="case wrap" id="sito" aria-labelledby="h-sito">
+  <div class="case-head">
+    <p class="kicker lbl"><span class="pill">Sito</span><span>Trattoria da Ines, negozio inventato</span></p>
+    <h2 id="h-sito">Un sito fatto per il telefono</h2>
+  </div>
+  <div class="case-grid">
+    <div class="phone-col">
+      <div class="ctrl">
+        <div class="seg" role="group" aria-label="Mostra il sito">
+          <button type="button" data-to="100" aria-pressed="false">Prima</button><button type="button" data-to="50" aria-pressed="true">Metà</button><button type="button" data-to="0" aria-pressed="false">Dopo</button>
+        </div>
+        <span class="hint lbl"><i></i>Trascina la linea</span>
+      </div>
+      <div class="cmp">
+        <div class="inner">
+          <div class="screen">
+            <p class="sr">Prima: il vecchio sito da computer, sul telefono si vede piccolissimo, con il menù in PDF e il numero di telefono dentro un'immagine. Dopo: un sito pensato per il telefono, con foto grandi, orari di oggi, tasti per prenotare, scrivere su WhatsApp e avere le indicazioni, e il menù del giorno con i prezzi.</p>
+            <div class="stack" aria-hidden="true">
+              <div class="layer before to">
+                <div class="sb dk"><span>10:24</span><span class="sbi"><i class="sig"><i></i><i></i><i></i><i></i></i><i class="bat"></i></span></div>
+                <div class="to-page">
+                  <div class="to-head">
+                    <div class="to-logo">Trattoria da Ines<small>cucina tipica piemontese</small></div>
+                    <div class="to-tel">Prenotazioni<br>011 000 0000</div>
+                  </div>
+                  <div class="to-nav"><span class="on">Home</span><span>Chi siamo</span><span>Menù</span><span>Galleria</span><span>Contatti</span></div>
+                  <div class="to-slider"><img src="img2/o-slide.jpg" alt=""><span class="arr l">‹</span><span class="arr r">›</span><span class="dots">● ○ ○ ○</span></div>
+                  <div class="to-cols">
+                    <div class="to-main">
+                      <h4>Benvenuti nel nostro sito</h4>
+                      <p>La Trattoria da Ines vi dà il benvenuto. Da oltre trent'anni la nostra famiglia porta in tavola i piatti della tradizione piemontese con passione e amore per la buona cucina. Il locale è ideale per pranzi di lavoro, cene in famiglia, comunioni, cresime e feste di compleanno. Disponiamo di ampio dehors estivo. Si accettano prenotazioni telefoniche.</p>
+                      <p><a>Scarica il menù (PDF, 4,2 MB)</a></p>
+                      <h5>Le nostre specialità</h5>
+                      <div class="to-gal"><img src="img2/o-1.jpg" alt=""><img src="img2/o-2.jpg" alt=""><img src="img2/o-3.jpg" alt=""><img src="img2/o-4.jpg" alt=""></div>
+                    </div>
+                    <div class="to-side">
+                      <div class="to-w"><b>Orari</b>Chiuso il lunedì</div>
+                      <div class="to-w"><b>Seguici su Facebook</b><span class="to-fb">Caricamento...</span></div>
+                      <div class="to-w"><b>Newsletter</b><span class="to-inp"></span><span class="to-btn">Iscriviti</span></div>
+                    </div>
+                  </div>
+                  <div class="to-foot">© 2014 Trattoria da Ines · P.IVA 00000000000 · Privacy · Cookie policy · Credits</div>
+                </div>
+                <div class="to-cookie">Questo sito utilizza cookie tecnici e di terze parti per migliorare l'esperienza di navigazione. Proseguendo nella navigazione si accetta l'uso dei cookie.<br><span class="ok">OK</span><u>Leggi tutto</u></div>
+              </div>
+              <div class="layer after tn">
+                <div class="tn-top">
+                  <div class="sb lt"><span>10:24</span><span class="sbi"><i class="sig"><i></i><i></i><i></i><i></i></i><i class="bat"></i></span></div>
+                  <div class="tn-nav"><span class="tn-mark">da Ines</span><span class="tn-burger"><i></i><i></i></span></div>
+                  <div class="tn-hero">
+                    <p class="tn-kick">Trattoria piemontese, dal 1989</p>
+                    <div class="tn-h">Pasta tirata a mano, ogni mattina.</div>
+                  </div>
+                </div>
+                <div class="tn-pic">
+                  <img src="img2/t-hero.jpg" alt="">
+                  <span class="tn-badge"><svg viewBox="0 0 100 100"><defs><path id="tn-c" d="M50 50m-37 0a37 37 0 1 1 74 0a37 37 0 1 1-74 0"/></defs><text><textPath href="#tn-c">aperto oggi · pranzo e cena · aperto oggi · </textPath></text></svg><b></b></span>
+                </div>
+                <div class="tn-acts">
+                  <span class="pri"><svg class="i"><use href="#i-phone"/></svg>Prenota</span>
+                  <span><svg class="i"><use href="#i-chat"/></svg>WhatsApp</span>
+                  <span><svg class="i"><use href="#i-nav"/></svg>Arrivare</span>
+                </div>
+                <div class="tn-sec">
+                  <div class="tn-sh"><h4>Il menù di oggi</h4><span>Giovedì, pranzo</span></div>
+                  <figure class="tn-feat"><img src="img2/t-ravioli.jpg" alt="" loading="lazy"><figcaption><span><b>Ravioli ai funghi</b><small>Il piatto del giorno</small></span><em>13</em></figcaption></figure>
+                  <dl class="tn-list">
+                    <dt>Antipasti</dt>
+                    <dd><span>Vitello tonnato</span><i></i><em>11</em></dd>
+                    <dd><span>Battuta al coltello</span><i></i><em>12</em></dd>
+                    <dt>Primi</dt>
+                    <dd><span>Tagliatelle ai funghi</span><i></i><em>12</em></dd>
+                    <dd><span>Gnocchi al pomodoro</span><i></i><em>11</em></dd>
+                    <dt>Dolci</dt>
+                    <dd><span>Bonet</span><i></i><em>6</em></dd>
+                    <dd><span>Tiramisù</span><i></i><em>6</em></dd>
+                  </dl>
+                  <div class="tn-btn">Tutto il menù</div>
+                </div>
+                <div class="tn-strip-h"><b>Dalla cucina</b><span>Scorri</span></div>
+                <div class="tn-strip">
+                  <figure><img src="img2/t-tagliatelle.jpg" alt="" loading="lazy"><figcaption>Tagliatelle ai funghi</figcaption></figure>
+                  <figure><img src="img2/t-gnocchi.jpg" alt="" loading="lazy"><figcaption>Gnocchi al pomodoro</figcaption></figure>
+                  <figure><img src="img2/t-tiramisu.jpg" alt="" loading="lazy"><figcaption>Tiramisù</figcaption></figure>
+                </div>
+                <blockquote class="tn-quote"><p>«Il ragù cuoce quattro ore, come una volta.»</p><cite>Ines, in cucina dal 1989</cite></blockquote>
+                <div class="tn-dehors"><img src="img2/t-dehors.jpg" alt="" loading="lazy"><p>D'estate si mangia fuori.</p></div>
+                <div class="tn-sec">
+                  <div class="tn-sh"><h4>Dove siamo</h4><span>Torino</span></div>
+                  <div class="tn-map"><i class="tn-pin"></i></div>
+                  <div class="tn-addr"><b>Via Esempio 12, Torino</b><span>Tram e bus a due minuti</span></div>
+                  <table class="tn-hours"><tr><th>Martedì-domenica</th><td>12-14:30, 19:30-22:30</td></tr><tr><th>Lunedì</th><td>Chiuso</td></tr></table>
+                </div>
+                <div class="tn-foot"><span class="tn-mark">da Ines</span><small>Trattoria piemontese a Torino</small></div>
+              </div>
+            </div>
+            <i class="island"></i>
+          </div>
+          <span class="ex">Negozio inventato</span>
+          <div class="divider"><div class="knob" tabindex="0" role="slider" aria-label="Confronta prima e dopo del sito" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg class="i"><use href="#i-arrows"/></svg><span class="t l">Prima</span><span class="t r">Dopo</span></div></div>
+        </div>
+      </div>
+      <p class="cap">Stesso locale, stessi piatti. Cambia il sito.</p>
+    </div>
+    <div class="notes">
+      <table class="pd">
+        <caption class="lbl">Cosa cambia</caption>
+        <thead><tr><th scope="col">Prima</th><th scope="col">Dopo</th></tr></thead>
+        <tbody>
+          <tr><td>Testo minuscolo, serve lo zoom</td><td>Si legge subito</td></tr>
+          <tr><td>Orari da cercare</td><td>Aperto o chiuso, in alto</td></tr>
+          <tr><td>Numero dentro un'immagine</td><td>Prenoti con un tocco</td></tr>
+          <tr><td>Menù in PDF da scaricare</td><td>Il menù del giorno, in pagina</td></tr>
+          <tr><td>Foto piccole e scure</td><td>Piatti grandi e luminosi</td></tr>
+        </tbody>
+      </table>
+      <div class="price">
+        <div><b>Sito di una pagina</b><span>Metà all'inizio, metà alla consegna. Dominio a parte.</span></div>
+        <strong>390€</strong>
+      </div>
+      <p class="alt">Hai già un sito e va solo sistemato? <b>Controllo e correzioni a 79€</b>, pronto in 48 ore e paghi dopo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INSTAGRAM ================= -->
+<section class="case wrap" id="instagram" aria-labelledby="h-ig">
+  <div class="case-head">
+    <p class="kicker lbl"><span class="pill">Instagram</span><span>Nora Parrucchieri, negozio inventato</span></p>
+    <h2 id="h-ig">Un profilo che dice subito chi sei</h2>
+  </div>
+  <div class="case-grid">
+    <div class="phone-col">
+      <div class="ctrl">
+        <div class="seg" role="group" aria-label="Mostra il profilo Instagram">
+          <button type="button" data-to="100" aria-pressed="false">Prima</button><button type="button" data-to="50" aria-pressed="true">Metà</button><button type="button" data-to="0" aria-pressed="false">Dopo</button>
+        </div>
+        <span class="hint lbl"><i></i>Trascina la linea</span>
+      </div>
+      <div class="cmp">
+        <div class="inner">
+          <div class="screen">
+            <p class="sr">Prima: profilo con foto sfocata, bio di una riga, nessuna storia in evidenza e una griglia di foto scure, storte e cartelli scritti ognuno in modo diverso. Dopo: logo, bio con cosa fa, orari e come prenotare, tasto Prenota, storie in evidenza e una griglia ordinata con foto luminose e post grafici negli stessi colori. Follower uguali prima e dopo.</p>
+            <div class="stack" aria-hidden="true">
+              <div class="layer before ig">
+                <div class="sb dk"><span>10:24</span><span class="sbi"><i class="sig"><i></i><i></i><i></i><i></i></i><i class="bat"></i></span></div>
+                <div class="ig-top"><svg class="i"><use href="#i-back"/></svg><span class="h">parrucchiera_nora85</span><svg class="i"><use href="#i-dots"/></svg></div>
+                <div class="ig-head">
+                  <img class="ig-av" src="img2/sb-avatar.jpg" alt="">
+                  <div class="ig-stats"><div><b>48</b><span>post</span></div><div><b>312</b><span>follower</span></div><div><b>190</b><span>seguiti</span></div></div>
+                </div>
+                <div class="ig-bio"><b>Parrucchiera Nora</b><p>Siamo aperti!!! per info chiamare</p></div>
+                <div class="ig-btns"><span class="p">Segui</span><span>Messaggio</span></div>
+                <div class="ig-tabs" style="margin-top:.8em"><span class="on"><svg class="i"><use href="#i-grid"/></svg></span><span><svg class="i"><use href="#i-reel"/></svg></span><span><svg class="i"><use href="#i-tag"/></svg></span></div>
+                <div class="ig-grid">
+                  <div class="tl tl-chiuso">Chiuso dal 10 al 20 agosto</div>
+                  <img src="img2/sb-piega.jpg" alt="">
+                  <div class="tl tl-promo">Promo!!! Taglio + piega</div>
+                  <img src="img2/sb-taglio.jpg" alt="">
+                  <div class="tl tl-shot"><i class="bar"></i><i class="bub"></i><i class="bub me"></i><i class="bub"></i><i class="bub me s"></i></div>
+                  <img src="img2/sb-ricci.jpg" alt="">
+                  <div class="tl tl-feste">Buone feste a tutti!!</div>
+                  <img src="img2/sb-spazzola.jpg" alt="">
+                  <img src="img2/sb-raccolto.jpg" alt="">
+                </div>
+              </div>
+              <div class="layer after ig">
+                <div class="sb dk"><span>10:24</span><span class="sbi"><i class="sig"><i></i><i></i><i></i><i></i></i><i class="bat"></i></span></div>
+                <div class="ig-top"><svg class="i"><use href="#i-back"/></svg><span class="h">nora.parrucchieri</span><svg class="i"><use href="#i-dots"/></svg></div>
+                <div class="ig-head">
+                  <div class="ig-av mono"><span>N</span></div>
+                  <div class="ig-stats"><div><b>56</b><span>post</span></div><div><b>312</b><span>follower</span></div><div><b>190</b><span>seguiti</span></div></div>
+                </div>
+                <div class="ig-bio"><b>Nora Parrucchieri</b><span class="cat">Parrucchiere</span><p>Taglio, colore e piega donna<br>Mar-sab 9-19, giovedì fino alle 21<br>Via Esempio 7, Torino</p><span class="lnk"><svg class="i"><use href="#i-link"/></svg>Prenota su WhatsApp</span></div>
+                <div class="ig-btns"><span class="p">Segui</span><span>Messaggio</span><span>Prenota</span></div>
+                <div class="ig-hl">
+                  <div><span class="c"><b class="eu">€</b></span>Prezzi</div>
+                  <div><span class="c"><b><svg class="i"><use href="#i-drop"/></svg></b></span>Colore</div>
+                  <div><span class="c"><b><svg class="i"><use href="#i-scissors"/></svg></b></span>Tagli</div>
+                  <div><span class="c"><b><svg class="i"><use href="#i-spark"/></svg></b></span>Sposa</div>
+                  <div><span class="c"><b><svg class="i"><use href="#i-pin"/></svg></b></span>Dove</div>
+                </div>
+                <div class="ig-tabs"><span class="on"><svg class="i"><use href="#i-grid"/></svg></span><span><svg class="i"><use href="#i-reel"/></svg></span><span><svg class="i"><use href="#i-tag"/></svg></span></div>
+                <div class="ig-grid">
+                  <img src="img2/s-piega.jpg" alt="">
+                  <div class="tl tl-n tl-c"><small>Colore</small><strong>Il colore che dura di più</strong><i class="car"></i><span class="mk">N</span></div>
+                  <img src="img2/s-treccia.jpg" alt="">
+                  <img src="img2/s-colore.jpg" alt="">
+                  <div class="tl tl-n tl-l"><strong>Listino</strong><p><span>Piega</span><span>18€</span></p><p><span>Taglio e piega</span><span>32€</span></p><p><span>Colore</span><span>da 45€</span></p><p><span>Trattamento</span><span>15€</span></p><span class="mk">N</span></div>
+                  <img src="img2/s-ricci.jpg" alt="">
+                  <img src="img2/s-sposa.jpg" alt="">
+                  <div class="tl tl-n tl-g"><small>Nuovo orario</small><strong>Il giovedì fino alle 21</strong><span class="mk">N</span></div>
+                  <img src="img2/s-liscio.jpg" alt="">
+                </div>
+              </div>
+            </div>
+            <i class="island"></i>
+          </div>
+          <span class="ex">Negozio inventato</span>
+          <div class="divider"><div class="knob" tabindex="0" role="slider" aria-label="Confronta prima e dopo del profilo Instagram" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg class="i"><use href="#i-arrows"/></svg><span class="t l">Prima</span><span class="t r">Dopo</span></div></div>
+        </div>
+      </div>
+      <p class="cap">Stessi follower prima e dopo. Gli 8 post in più sono il primo mese.</p>
+    </div>
+    <div class="notes">
+      <table class="pd">
+        <caption class="lbl">Cosa cambia</caption>
+        <thead><tr><th scope="col">Prima</th><th scope="col">Dopo</th></tr></thead>
+        <tbody>
+          <tr><td>Bio di una riga</td><td>Cosa fai, orari, dove sei</td></tr>
+          <tr><td>Nessun modo di prenotare</td><td>Prenota con un tocco</td></tr>
+          <tr><td>Niente storie in evidenza</td><td>Prezzi, colore, tagli, sposa</td></tr>
+          <tr><td>Foto storte, filtri diversi</td><td>Foto luminose, stessi toni</td></tr>
+          <tr><td>Post quando capita</td><td>8 post al mese, testi compresi</td></tr>
+        </tbody>
+      </table>
+      <div class="price">
+        <div><b>Instagram gestito</b><span>Poi 150€ al mese. Le foto, se vuoi, le faccio io quando passo.</span></div>
+        <div><strong>99€</strong><small class="lbl">primo mese</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GOOGLE ================= -->
+<section class="case wrap" id="google" aria-labelledby="h-gm">
+  <div class="case-head">
+    <p class="kicker lbl"><span class="pill">Scheda Google</span><span>Forno Rubatà, negozio inventato</span></p>
+    <h2 id="h-gm">La scheda Google completa</h2>
+  </div>
+  <div class="case-grid">
+    <div class="phone-col">
+      <div class="ctrl">
+        <div class="seg" role="group" aria-label="Mostra la scheda Google">
+          <button type="button" data-to="100" aria-pressed="false">Prima</button><button type="button" data-to="50" aria-pressed="true">Metà</button><button type="button" data-to="0" aria-pressed="false">Dopo</button>
+        </div>
+        <span class="hint lbl"><i></i>Trascina la linea</span>
+      </div>
+      <div class="cmp">
+        <div class="inner">
+          <div class="screen">
+            <p class="sr">Prima: una sola foto scura di un cliente, categoria sbagliata, niente orari, niente telefono e una recensione senza risposta. Dopo: foto del banco, della farina e dell'impasto, categoria panetteria, orari completi, telefono e WhatsApp, descrizione, prodotti con foto e risposta alla recensione. Stelle e recensioni uguali prima e dopo.</p>
+            <div class="stack" aria-hidden="true">
+              <div class="layer before gm">
+                <div class="sb dk"><span>10:24</span><span class="sbi"><i class="sig"><i></i><i></i><i></i><i></i></i><i class="bat"></i></span></div>
+                <div class="gm-search"><svg class="i"><use href="#i-back"/></svg><span>Forno Rubatà</span></div>
+                <div class="gm-map"><i class="gm-pin"></i></div>
+                <div class="gm-sheet">
+                  <i class="gm-grab"></i>
+                  <div class="gm-ph one"><figure><img src="img2/g-old.jpg" alt=""><figcaption>Foto di un cliente</figcaption></figure><div class="gm-add"><svg class="i"><use href="#i-camera"/></svg>Aggiungi foto</div></div>
+                  <div class="gm-body">
+                    <div class="gm-name">Forno Rubatà</div>
+                    <div class="gm-rate">4,3 <span class="st">★★★★<s>★</s></span> (27)</div>
+                    <div class="gm-cat">Negozio di alimentari</div>
+                    <div class="gm-status"><span class="na">Orari non disponibili</span></div>
+                  </div>
+                  <div class="gm-acts">
+                    <span class="first"><i><svg class="i"><use href="#i-nav"/></svg></i>Indicazioni</span>
+                    <span class="off"><i><svg class="i"><use href="#i-phone"/></svg></i>Chiama</span>
+                    <span><i><svg class="i"><use href="#i-save"/></svg></i>Salva</span>
+                    <span><i><svg class="i"><use href="#i-share"/></svg></i>Condividi</span>
+                  </div>
+                  <ul class="gm-info">
+                    <li><svg class="i"><use href="#i-pin"/></svg><span>Via Esempio 30, Torino</span></li>
+                    <li><svg class="i"><use href="#i-clock"/></svg><span class="add">Aggiungi orari</span></li>
+                    <li><svg class="i"><use href="#i-phone"/></svg><span class="add">Aggiungi numero di telefono</span></li>
+                    <li><svg class="i"><use href="#i-globe"/></svg><span class="add">Aggiungi sito web</span></li>
+                  </ul>
+                  <div class="gm-sec first">
+                    <div class="gm-h">Recensioni</div>
+                    <div class="rev">
+                      <div class="who"><span class="av">L</span><div><b>Laura B.</b><small>3 settimane fa</small></div></div>
+                      <span class="st">★★★<s>★★</s></span>
+                      <p>Pane buonissimo, ma sabato pomeriggio ho trovato chiuso. Qui non c'erano gli orari.</p>
+                      <div class="noreply">Nessuna risposta</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="layer after gm">
+                <div class="sb dk"><span>10:24</span><span class="sbi"><i class="sig"><i></i><i></i><i></i><i></i></i><i class="bat"></i></span></div>
+                <div class="gm-search"><svg class="i"><use href="#i-back"/></svg><span>Forno Rubatà</span></div>
+                <div class="gm-map"><i class="gm-pin"></i></div>
+                <div class="gm-sheet">
+                  <i class="gm-grab"></i>
+                  <div class="gm-ph"><img class="big" src="img2/g-banco.jpg" alt=""><img src="img2/g-farina.jpg" alt=""><img src="img2/g-impasto.jpg" alt=""><span class="gm-n">12 foto</span></div>
+                  <div class="gm-body">
+                    <div class="gm-name">Forno Rubatà</div>
+                    <div class="gm-rate">4,3 <span class="st">★★★★<s>★</s></span> (27)</div>
+                    <div class="gm-cat">Panetteria</div>
+                    <div class="gm-status"><span class="ok">Aperto</span> · Chiude alle 19:30</div>
+                  </div>
+                  <div class="gm-acts">
+                    <span class="first"><i><svg class="i"><use href="#i-nav"/></svg></i>Indicazioni</span>
+                    <span><i><svg class="i"><use href="#i-phone"/></svg></i>Chiama</span>
+                    <span><i><svg class="i"><use href="#i-chat"/></svg></i>WhatsApp</span>
+                    <span><i><svg class="i"><use href="#i-save"/></svg></i>Salva</span>
+                    <span><i><svg class="i"><use href="#i-share"/></svg></i>Condividi</span>
+                  </div>
+                  <div class="gm-desc"><small>Dal titolare</small>Pane con lievito madre, grissini rubatà stirati a mano e focaccia calda dalle 8.</div>
+                  <ul class="gm-info">
+                    <li><svg class="i"><use href="#i-pin"/></svg><span>Via Esempio 30, Torino</span></li>
+                    <li><svg class="i"><use href="#i-clock"/></svg><span class="gm-hours"><span class="h1"><span class="ok">Aperto</span> · Chiude alle 19:30</span><em>Lun-ven</em><span>7:30-19:30</span><em>Sabato</em><span>7:30-13</span><em>Domenica</em><span>Chiuso</span></span></li>
+                    <li><svg class="i"><use href="#i-phone"/></svg><span>011 000 0000</span></li>
+                    <li><svg class="i"><use href="#i-chat"/></svg><span class="lnk">Ordina su WhatsApp</span></li>
+                  </ul>
+                  <div class="gm-chips"><span>Paga con carta</span><span>Ritiro in negozio</span></div>
+                  <div class="gm-sec">
+                    <div class="gm-h">Prodotti</div>
+                    <div class="gm-prod">
+                      <div><img src="img2/g-pagnotta.jpg" alt="" loading="lazy">Pagnotta</div>
+                      <div><img src="img2/g-grissini.jpg" alt="" loading="lazy">Grissini rubatà</div>
+                      <div><img src="img2/g-focaccia.jpg" alt="" loading="lazy">Focaccia</div>
+                      <div><img src="img2/g-croissant.jpg" alt="" loading="lazy">Croissant</div>
+                    </div>
+                  </div>
+                  <div class="gm-sec">
+                    <div class="gm-h">Recensioni</div>
+                    <div class="rev">
+                      <div class="who"><span class="av">L</span><div><b>Laura B.</b><small>3 settimane fa</small></div></div>
+                      <span class="st">★★★<s>★★</s></span>
+                      <p>Pane buonissimo, ma sabato pomeriggio ho trovato chiuso. Qui non c'erano gli orari.</p>
+                      <div class="reply"><b>Risposta del titolare</b><small>2 giorni fa</small>Grazie Laura! Il sabato chiudiamo alle 13. Adesso trovi gli orari giusti anche qui.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <i class="island"></i>
+          </div>
+          <span class="ex">Negozio inventato</span>
+          <div class="divider"><div class="knob" tabindex="0" role="slider" aria-label="Confronta prima e dopo della scheda Google" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg class="i"><use href="#i-arrows"/></svg><span class="t l">Prima</span><span class="t r">Dopo</span></div></div>
+        </div>
+      </div>
+      <p class="cap">Stesse stelle e stesse recensioni, 4,3 su 27.</p>
+    </div>
+    <div class="notes">
+      <table class="pd">
+        <caption class="lbl">Cosa cambia</caption>
+        <thead><tr><th scope="col">Prima</th><th scope="col">Dopo</th></tr></thead>
+        <tbody>
+          <tr><td>Negozio di alimentari</td><td>Panetteria, la categoria giusta</td></tr>
+          <tr><td>Orari mancanti</td><td>Orari completi, anche festivi</td></tr>
+          <tr><td>Una foto scura di un cliente</td><td>Banco, farina e impasto</td></tr>
+          <tr><td>Nessun telefono</td><td>Telefono e WhatsApp</td></tr>
+          <tr><td>Nessun prodotto</td><td>Prodotti con la foto</td></tr>
+          <tr><td>Recensione senza risposta</td><td>Risposta del titolare</td></tr>
+        </tbody>
+      </table>
+      <div class="price">
+        <div><b>Controllo e correzioni</b><span>Scheda sistemata in 48 ore. Paghi dopo.</span></div>
+        <strong>79€</strong>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<section class="cta" id="contatti" aria-labelledby="h-cta">
+  <div class="wrap cta-grid">
+    <div>
+    <h2 id="h-cta">Lo vuoi vedere sul tuo negozio?</h2>
+    <p>Ti preparo una prova gratis in 48 ore, sul sito, su Instagram o sulla scheda Google. Se ti piace ne parliamo, sennò la tieni lo stesso.</p>
+    <div class="num">
+      <span class="lbl">WhatsApp e telefono</span>
+      <strong id="num">371 539 9463</strong>
+      <button type="button" class="btn y" id="copy"><svg class="i"><use href="#i-copy"/></svg><span>Copia il numero</span></button>
+      <a class="btn o" href="https://wa.me/393715399463?text=Ciao%20Maicol%2C%20ho%20visto%20i%20tuoi%20esempi%20prima%20e%20dopo" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>Scrivimi su WhatsApp</a>
+    </div>
+    <p class="who">Maicol Kumar, Instagram @mk.digital_studio</p>
+    </div>
+    <figure class="qr"><svg viewBox="0 0 41 41" role="img" aria-label="Codice QR che apre WhatsApp per scrivermi"><path stroke="#1c293c" d="M0 0.5h7m2 0h3m1 0h2m1 0h6m1 0h2m1 0h1m4 0h1m2 0h7m-41 1h1m5 0h1m3 0h3m2 0h1m1 0h1m2 0h2m4 0h2m2 0h1m1 0h1m1 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h3m3 0h4m1 0h1m2 0h1m1 0h1m5 0h1m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m4 0h1m1 0h4m1 0h1m1 0h2m3 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h3m1 0h2m1 0h1m1 0h4m1 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m1 0h2m1 0h4m6 0h1m2 0h6m2 0h1m1 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h1m4 0h4m1 0h2m1 0h2m3 0h3m-29 1h1m1 0h5m2 0h1m3 0h2m2 0h2m1 0h1m2 0h1m1 0h1m3 0h1m2 0h1m1 0h5m-38 1h3m4 0h1m3 0h3m4 0h1m1 0h4m1 0h1m2 0h4m1 0h3m1 0h3m-41 1h1m5 0h1m3 0h2m6 0h1m1 0h3m4 0h3m2 0h2m1 0h2m2 0h1m-38 1h1m1 0h1m2 0h1m1 0h3m1 0h1m1 0h2m1 0h1m2 0h3m2 0h3m2 0h3m3 0h1m-37 1h2m1 0h1m1 0h1m3 0h3m3 0h2m1 0h2m4 0h3m1 0h3m3 0h1m1 0h4m-41 1h1m1 0h1m1 0h1m2 0h5m3 0h2m1 0h1m2 0h3m6 0h3m1 0h1m1 0h2m2 0h1m-41 1h3m3 0h4m3 0h1m2 0h1m3 0h3m4 0h4m1 0h2m2 0h1m2 0h1m-40 1h2m2 0h1m3 0h4m2 0h3m4 0h3m3 0h2m1 0h1m1 0h1m1 0h4m-38 1h1m1 0h2m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m2 0h1m2 0h9m1 0h1m1 0h1m2 0h1m-37 1h4m1 0h2m1 0h3m5 0h3m1 0h2m2 0h1m4 0h1m2 0h3m3 0h1m-36 1h3m2 0h3m5 0h1m1 0h1m1 0h1m2 0h1m1 0h2m3 0h1m1 0h1m1 0h1m1 0h1m-37 1h2m1 0h1m1 0h1m2 0h3m3 0h1m3 0h4m3 0h2m2 0h2m3 0h1m3 0h1m-41 1h1m1 0h2m2 0h1m2 0h2m1 0h2m1 0h1m2 0h1m1 0h2m1 0h3m1 0h1m1 0h3m3 0h1m1 0h2m1 0h1m-39 1h1m2 0h1m3 0h2m2 0h1m1 0h1m3 0h1m1 0h1m1 0h1m2 0h3m2 0h3m1 0h3m1 0h2m-41 1h1m2 0h5m1 0h1m2 0h1m2 0h1m1 0h1m2 0h3m2 0h1m1 0h1m2 0h1m1 0h2m2 0h2m-38 1h3m2 0h1m2 0h2m1 0h4m3 0h1m1 0h4m2 0h2m6 0h1m1 0h1m2 0h1m-39 1h1m1 0h6m3 0h3m2 0h2m1 0h1m2 0h1m1 0h1m1 0h1m1 0h3m5 0h2m-38 1h3m3 0h1m1 0h1m1 0h1m5 0h1m1 0h1m1 0h6m1 0h1m1 0h2m2 0h4m1 0h2m-41 1h1m1 0h2m2 0h1m1 0h2m1 0h1m2 0h2m2 0h1m1 0h1m6 0h2m3 0h2m-33 1h1m1 0h3m4 0h4m1 0h1m2 0h1m2 0h1m1 0h2m1 0h3m2 0h7m1 0h1m-40 1h4m2 0h1m1 0h2m1 0h4m1 0h2m1 0h1m1 0h2m1 0h3m2 0h3m3 0h1m1 0h3m-40 1h3m1 0h2m2 0h1m1 0h1m2 0h3m1 0h2m1 0h2m1 0h1m4 0h1m2 0h7m1 0h2m-41 1h1m2 0h1m1 0h2m3 0h1m1 0h4m3 0h1m4 0h1m1 0h2m2 0h1m1 0h3m1 0h2m1 0h1m-40 1h1m4 0h1m1 0h3m3 0h2m1 0h1m2 0h3m5 0h1m2 0h1m2 0h2m2 0h1m2 0h1m-41 1h1m1 0h3m1 0h1m2 0h2m5 0h2m1 0h1m4 0h4m1 0h1m1 0h8m1 0h1m-33 1h3m1 0h1m4 0h1m1 0h5m2 0h1m3 0h1m1 0h1m3 0h1m3 0h1m-41 1h7m2 0h2m1 0h1m3 0h2m3 0h1m5 0h6m1 0h1m1 0h1m2 0h1m-40 1h1m5 0h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h2m2 0h1m5 0h1m2 0h3m3 0h2m2 0h1m-41 1h1m1 0h3m1 0h1m1 0h2m2 0h2m2 0h1m4 0h1m2 0h3m1 0h3m1 0h8m-40 1h1m1 0h3m1 0h1m1 0h5m3 0h1m1 0h2m1 0h1m1 0h1m1 0h1m3 0h1m3 0h1m1 0h1m3 0h2m-41 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h1m1 0h3m2 0h1m6 0h1m1 0h1m1 0h1m1 0h4m1 0h1m-39 1h1m5 0h1m3 0h3m2 0h3m1 0h1m1 0h4m1 0h1m3 0h1m1 0h2m2 0h1m2 0h1m-40 1h7m1 0h4m1 0h1m1 0h1m1 0h2m1 0h1m4 0h1m1 0h1m1 0h1m1 0h1m2 0h5"/></svg><figcaption>Inquadralo con il tuo telefono e si apre WhatsApp con il messaggio già scritto.</figcaption></figure>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Nomi, indirizzi, prezzi e numeri dei tre negozi sono inventati. Negli esempi follower, stelle e recensioni restano gli stessi prima e dopo, perché non invento risultati.</p>
+    <p>mk digital studio, siti, Google e Instagram per negozi e locali.</p>
+    <details class="credits"><summary>Crediti delle foto</summary><p>Foto libere da diritti (CC0 e pubblico dominio) trovate con <a href="https://openverse.org" target="_blank" rel="noopener">Openverse</a>. Autori: Jorge Zapata, maryseas4, Ericka Barboza, ChrisEdwardsCE, Leeroy, Snufkin, Jonas Svidras, Matt Moloney, Roman Kraft, roland, Explorers' Edge e la raccolta di pubblico dominio di rawpixel.</p></details>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.case').forEach(function(sec){
+    var c = sec.querySelector('.cmp'), inner = c.querySelector('.inner'), knob = c.querySelector('.knob');
+    var btns = sec.querySelectorAll('[data-to]');
+    var x = 50, touched = false;
+    function set(v, anim){
+      x = Math.max(0, Math.min(100, v));
+      c.classList.toggle('anim', !!anim);
+      c.style.setProperty('--x', x.toFixed(2) + '%');
+      var r = Math.round(x);
+      knob.setAttribute('aria-valuenow', r);
+      knob.setAttribute('aria-valuetext', 'Prima ' + r + ' per cento, dopo ' + (100 - r) + ' per cento');
+      c.classList.toggle('edge-l', x < 16);
+      c.classList.toggle('edge-r', x > 84);
+      btns.forEach(function(b){ b.setAttribute('aria-pressed', String(Math.abs(+b.dataset.to - x) < 0.5)); });
+    }
+    function at(e){ var b = inner.getBoundingClientRect(); return (e.clientX - b.left) / b.width * 100; }
+    knob.addEventListener('pointerdown', function(e){
+      e.preventDefault(); touched = true;
+      try { knob.setPointerCapture(e.pointerId); } catch(_){}
+      c.classList.add('drag');
+      function mv(ev){ set(at(ev)); }
+      function up(){ c.classList.remove('drag'); knob.removeEventListener('pointermove', mv); knob.removeEventListener('pointerup', up); knob.removeEventListener('pointercancel', up); }
+      knob.addEventListener('pointermove', mv); knob.addEventListener('pointerup', up); knob.addEventListener('pointercancel', up);
+    });
+    var st = null;
+    inner.addEventListener('pointerdown', function(e){
+      if (e.target.closest('.knob')) return;
+      st = {x: e.clientX, y: e.clientY, id: e.pointerId, drag: false};
+    });
+    inner.addEventListener('pointermove', function(e){
+      if (!st || e.pointerId !== st.id) return;
+      var dx = e.clientX - st.x, dy = e.clientY - st.y;
+      if (!st.drag && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy) * 1.2){
+        st.drag = true; touched = true; c.classList.add('drag');
+        try { inner.setPointerCapture(e.pointerId); } catch(_){}
+      }
+      if (st.drag) set(at(e));
+    });
+    function end(e){
+      if (!st) return;
+      if (!st.drag && e.type === 'pointerup' && Math.abs(e.clientX - st.x) < 8 && Math.abs(e.clientY - st.y) < 8){ touched = true; set(at(e), true); }
+      c.classList.remove('drag'); st = null;
+    }
+    inner.addEventListener('pointerup', end); inner.addEventListener('pointercancel', end);
+    knob.addEventListener('keydown', function(e){
+      var v = null;
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') v = x - 5;
+      else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') v = x + 5;
+      else if (e.key === 'PageDown') v = x - 20;
+      else if (e.key === 'PageUp') v = x + 20;
+      else if (e.key === 'Home') v = 0;
+      else if (e.key === 'End') v = 100;
+      if (v !== null){ e.preventDefault(); touched = true; set(v, true); }
+    });
+    btns.forEach(function(b){ b.addEventListener('click', function(){ touched = true; set(+b.dataset.to, true); }); });
+    set(50);
+    if (!reduce && 'IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(es){
+        es.forEach(function(en){
+          if (!en.isIntersecting) return;
+          io.disconnect();
+          [[350, 64], [950, 36], [1550, 50]].forEach(function(s){ setTimeout(function(){ if (!touched) set(s[1], true); }, s[0]); });
+        });
+      }, {threshold: .3});
+      io.observe(c);
+    }
+  });
+
+  var chips = document.querySelectorAll('.chips a');
+  function mark(id){ chips.forEach(function(a){ a.setAttribute('aria-current', String(a.getAttribute('href') === '#' + id)); }); }
+  if ('IntersectionObserver' in window){
+    var spy = new IntersectionObserver(function(es){ es.forEach(function(en){ if (en.isIntersecting) mark(en.target.id); }); }, {rootMargin: '-45% 0px -50% 0px'});
+    document.querySelectorAll('.case').forEach(function(s){ spy.observe(s); });
+  }
+  function goHash(){
+    var id = (location.hash || '').slice(1);
+    if (!/^(sito|instagram|google|contatti)$/.test(id)) return;
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({block: 'start'});
+  }
+  window.addEventListener('hashchange', goHash);
+  if (location.hash) setTimeout(goHash, 60);
+
+  var copy = document.getElementById('copy'), label = copy.querySelector('span');
+  copy.addEventListener('click', function(){
+    function done(t){ label.textContent = t; setTimeout(function(){ label.textContent = 'Copia il numero'; }, 2400); }
+    function fallback(){
+      var r = document.createRange(); r.selectNodeContents(document.getElementById('num'));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      done('Selezionato, ora copia');
+    }
+    try {
+      navigator.clipboard.writeText('+39 371 539 9463').then(function(){ done('Copiato'); }, fallback);
+    } catch(_) { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>
