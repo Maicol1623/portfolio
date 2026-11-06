@@ -123,6 +123,7 @@ html:not(.dot-on) .slot::after,.slot.is-here::after{opacity:1}
 @media (max-width:700px){.hero-h{font-size:clamp(40px,13.6vw,64px)}.hw{display:block}}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:26px;margin-top:clamp(22px,5vh,60px)}
 .hero-sub{max-width:27em;font-size:clamp(17px,.6vw + 14px,22px);line-height:1.45;color:#c8d1dd;text-wrap:pretty}
+.me-pic{float:left;width:2.6em;height:2.6em;margin:.18em .75em .2em 0;border-radius:50%;box-shadow:0 0 0 2px rgba(245,245,242,.16)}
 @media (min-width:960px){.hero-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(40px,6vw,110px);align-items:start}.hero-sub{padding-top:34px}}
 
 /* ---------- find your shop: a real search on OpenStreetMap; the dot is the lens and the pen ---------- */
@@ -440,6 +441,8 @@ html:not(.js) .ba-in{display:none}
 /* ---------- contacts ---------- */
 .sign{padding:clamp(96px,14vh,160px) 0 clamp(88px,12vh,150px)}
 .sign-in{display:grid;gap:44px;align-items:start}
+.sign-who{display:flex;align-items:center;gap:clamp(16px,1.6vw + 8px,26px)}
+.sign-pic{flex:none;width:clamp(96px,5vw + 60px,136px);height:auto;aspect-ratio:1;border-radius:50%;object-fit:cover;box-shadow:0 16px 30px -18px rgba(27,27,27,.6)}
 .sign-me{max-width:26em;font-size:clamp(17px,.5vw + 15px,21px);color:var(--fg2)}
 .sign-h{margin-top:20px;font-size:clamp(64px,7.6vw + 20px,150px);font-stretch:125%}
 .sign .lead{margin-top:18px;color:var(--fg)}

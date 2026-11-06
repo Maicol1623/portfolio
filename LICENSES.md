@@ -38,3 +38,5 @@ La ricerca del negozio legge i dati di OpenStreetMap, © OpenStreetMap contribut
 ## Foto
 
 Foto libere da diritti (CC0 e pubblico dominio) trovate con Openverse, usate nella pagina degli esempi e nel sito personale (cartelle `assets/img` e `studio/img`). Autori: Jorge Zapata, maryseas4, Ericka Barboza, ChrisEdwardsCE, Leeroy, Snufkin, Jonas Svidras, Matt Moloney, Roman Kraft, roland, Explorers' Edge e la raccolta di pubblico dominio di rawpixel. Lo stesso elenco è in fondo alla pagina degli esempi, sotto "Crediti delle foto". Le immagini prima e dopo in `studio/img` sono catture della pagina degli esempi.
+
+La foto di Maicol (`studio/img/maicol-*.webp`) è sua e non è libera: non si può riusare senza il suo permesso.

@@ -23,7 +23,7 @@ Pagina: https://maicol1623.github.io/portfolio/studio/
 Il sito di mk digital studio. Il punto giallo del logo è una pallina che si muove come una vera: cade nel titolo, diventa il tasto del sito nel telefono, poi il segnaposto sulla mappa, salta tra le foto di Instagram e alla fine fa da tasto Invia. In alto chi cerca il suo negozio lo trova su OpenStreetMap e vede come diventano il sito, la scheda Google e il profilo, con il messaggio WhatsApp già scritto.
 
 - `studio/src`: il sorgente. `index.tpl.html` è la pagina, `main.js` le scene, `dot.js` la pallina, `shopfinder.js` la ricerca, `tiles.js` la griglia Instagram. `studio/index.html` e `studio/js/studio.js` si rifanno con `python3 studio/src/build.py <cartella node_modules con esbuild>` (per il QR serve il pacchetto Python `segno`).
-- `studio/css/studio.css`: stile. `studio/fonts`: MK Grotesk (Mona Sans ridotto e rinominato) e Inter. `studio/img`: le foto dei negozi inventati e le immagini prima e dopo.
+- `studio/css/studio.css`: stile. `studio/fonts`: MK Grotesk (Mona Sans ridotto e rinominato) e Inter. `studio/img`: le foto dei negozi inventati, le immagini prima e dopo e la foto di Maicol.
 
 Con le animazioni ridotte, o senza JavaScript, ogni punto resta fermo al suo posto e la pagina è completa. Senza JavaScript la ricerca apre WhatsApp con il nome scritto.
 
