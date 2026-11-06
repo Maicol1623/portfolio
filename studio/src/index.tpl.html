@@ -13,7 +13,7 @@
 <meta property="og:title" content="Il tuo negozio, messo a punto. | mk digital studio">
 <meta property="og:description" content="Siti, schede Google e Instagram per negozi, ristoranti e saloni. Prova gratis sul tuo negozio in 48 ore.">
 <meta property="og:url" content="https://maicol1623.github.io/portfolio/studio/">
-<meta property="og:image" content="https://maicol1623.github.io/portfolio/studio/og.jpg?v=1">
+<meta property="og:image" content="https://maicol1623.github.io/portfolio/studio/og.jpg?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Il tuo negozio, messo a punto. mk digital studio">
@@ -22,7 +22,7 @@
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preload" href="fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-<script>(function(h){var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;h.className+=rm?' js':' js motion';setTimeout(function(){if(!window.mkStudio){h.classList.remove('motion');}},4000);})(document.documentElement);</script>
+<script>(function(h){var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;h.className+=rm?' js':' js motion';setTimeout(function(){if(!window.mkStudio){h.classList.remove('motion');}},2500);})(document.documentElement);</script>
 <link rel="stylesheet" href="css/studio.css?v=1">
 <noscript><style>.poster{display:block}</style></noscript>
 <script defer src="../assets/vendor/gsap.min.js"></script>
@@ -57,9 +57,37 @@
     <h1 id="h-top" class="hero-h"><span class="hl"><span class="hw">Il tuo</span> <span class="hw">negozio,</span></span> <span class="hl"><span class="hw">messo a</span> <span class="hw">punto<i class="dot" data-dot="hero" aria-hidden="true"></i></span></span><span class="sr">.</span></h1>
     <div class="hero-foot">
       <p class="hero-sub">Sono Maicol. Faccio siti, schede Google e profili Instagram per negozi, ristoranti e saloni, in tutta Italia.</p>
-      <div class="actions">
-        <a class="pill" data-wa href="{{WA}}" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>Scrivimi su WhatsApp</a>
-        <a class="ghost" href="#prova">Prova col tuo negozio</a>
+      <div class="find" id="prova">
+        <form class="find-form" role="search" autocomplete="off" novalidate>
+          <label class="find-l" for="q">Cerca il tuo negozio: lo trovo sulla mappa e ti faccio vedere come diventa.</label>
+          <div class="find-bar">
+            <input id="q" name="q" type="search" maxlength="80" placeholder="Nome del negozio e città" enterkeyhint="search" spellcheck="false" autocapitalize="words">
+            <button class="find-go" type="submit"><span class="lens" aria-hidden="true"><i class="dot" data-dot="find"></i></span><span class="sr">Cerca</span></button>
+          </div>
+        </form>
+        <p class="find-msg" role="status" aria-live="polite"></p>
+        <ol class="find-list" aria-label="Risultati"></ol>
+        <div class="find-alt" hidden>
+          <p class="find-alt-l">Che cosa fai?</p>
+          <div class="kinds" role="radiogroup" aria-label="Che cosa fai?">
+            <label class="chip"><input type="radio" name="kind" value="food" checked><span>Ristorante</span></label>
+            <label class="chip"><input type="radio" name="kind" value="hair"><span>Parrucchiere</span></label>
+            <label class="chip"><input type="radio" name="kind" value="bake"><span>Forno o bar</span></label>
+            <label class="chip"><input type="radio" name="kind" value="other"><span>Altro</span></label>
+          </div>
+          <button class="pill find-use" type="button">Usa questo nome</button>
+        </div>
+        <div class="find-pick" hidden>
+          <p class="find-st"><i></i><span></span></p>
+          <p class="find-hours"></p>
+          <p class="find-web"></p>
+          <div class="actions">
+            <a class="pill" data-wa href="{{WA}}" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>Mandami la prova gratis</a>
+            <a class="ghost" href="#sito">Guarda il tuo sito</a>
+          </div>
+          <button class="find-again" type="button">Non è lui? Cerca ancora</button>
+        </div>
+        <p class="find-note">Ricerca con i dati di OpenStreetMap (© OpenStreetMap contributors), tramite Photon di komoot e Nominatim. A me non arriva niente: il negozio che scegli resta qui finché non me lo mandi tu. <a class="find-wa" data-wa href="{{WA}}" target="_blank" rel="noopener">Preferisci scrivermi su WhatsApp?</a></p>
       </div>
     </div>
   </div>
@@ -68,42 +96,47 @@
 <section class="read" id="perche" data-theme="paper" aria-label="Perché">
   <div class="wrap read-in">
     <p class="read-p">Chi passa davanti al tuo negozio prima ti cerca sul telefono. In pochi secondi decide se entrare, chiamare o tirare dritto.</p>
-    <p class="read-end">Io metto a punto quello che vede in quei secondi.</p>
-  </div>
-</section>
-
-<section class="try" id="prova" data-theme="navy" aria-labelledby="h-prova">
-  <div class="wrap try-in">
-    <div class="try-head">
-      <h2 id="h-prova" class="h2">Prova col tuo negozio<i class="dot" data-dot="prova" aria-hidden="true"></i><span class="sr">.</span></h2>
-      <p class="lead">Scrivi il nome e scegli cosa fai. Le anteprime qui sotto diventano tue.</p>
-    </div>
-    <form class="try-form" action="#sito" autocomplete="off">
-      <label class="field">
-        <span class="field-l">Come si chiama il tuo negozio?</span>
-        <input id="shop" name="shop" type="text" maxlength="28" placeholder="Es. Pizzeria da Gino" enterkeyhint="done" spellcheck="false">
-      </label>
-      <fieldset class="kinds">
-        <legend class="field-l">Che cosa fai?</legend>
-        <label class="chip"><input type="radio" name="kind" value="food" checked><span>Ristorante</span></label>
-        <label class="chip"><input type="radio" name="kind" value="hair"><span>Parrucchiere</span></label>
-        <label class="chip"><input type="radio" name="kind" value="bake"><span>Forno o bar</span></label>
-      </fieldset>
-      <div class="try-go"><button class="ghost" type="submit">Guarda le anteprime</button><p class="try-note">È solo un'anteprima, il nome resta sul tuo telefono.</p></div>
-    </form>
-    <p class="try-name" aria-hidden="true"><span id="shop-big">Il tuo negozio</span></p>
+    <p class="read-end">Quello che vede in quei secondi, lo metto a punto io.</p>
   </div>
 </section>
 
 <section class="svc" id="sito" data-theme="deep" data-scene="site" aria-labelledby="h-sito">
   <div class="svc-in wrap">
-    <div class="svc-stage" data-stage="site"><div class="poster" aria-hidden="true"></div></div>
+    <div class="svc-stage" data-stage="site">
+      <div class="ph-wrap">
+        <div class="ph" aria-hidden="true">
+          <div class="ph-scr">
+            <div class="ph-site k-food">
+              <div class="ph-page">
+                <div class="ph-hero"><img class="ph-img" src="img/p/t-hero.webp" alt="" width="720" height="576" loading="lazy" decoding="async"><div class="ph-hero-t"><p class="ph-name">Trattoria da Ines</p><p class="ph-meta">Trattoria</p></div></div>
+                <div class="ph-cta"><span class="ph-btn">Prenota un tavolo</span></div>
+                <p class="ph-today"><i></i><span>Pranzo e cena, da martedì a domenica</span></p>
+                <div class="ph-more">
+                  <p class="ph-h">Dalla nostra cucina</p>
+                  <div class="ph-cards"><figure><img src="img/p/t-ravioli.webp" alt="" width="560" height="350" loading="lazy" decoding="async"><figcaption>Primi fatti a mano</figcaption></figure><figure><img src="img/p/t-tiramisu.webp" alt="" width="448" height="560" loading="lazy" decoding="async"><figcaption>Dolci della casa</figcaption></figure></div>
+                  <p class="ph-h ph-h-hours">Orari</p>
+                  <p class="ph-hours">mar-dom 12:00-15:00, 19:00-23:00</p>
+                  <p class="ph-h ph-h-where" hidden>Dove siamo</p>
+                  <p class="ph-where" hidden></p>
+                </div>
+              </div>
+              <div class="ph-bar"><span class="ph-brand">Trattoria da Ines</span><span class="ph-burger"></span></div>
+            </div>
+            <span class="ph-fab"><svg viewBox="0 0 24 24"><path d="M5.5 3.5h3.2l1.8 4.6-2.3 1.5a11 11 0 0 0 6.2 6.2l1.5-2.3 4.6 1.8v3.2a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 3.5 5.7a2 2 0 0 1 2-2.2z"/></svg></span>
+            <span class="ph-island"></span>
+            <span class="ph-glare"></span>
+          </div>
+        </div>
+        <span class="ph-shadow" aria-hidden="true"></span>
+      </div>
+      <p class="sr ph-desc">Anteprima: il sito di Trattoria da Ines, un negozio inventato, sul telefono.</p>
+    </div>
     <div class="svc-text">
       <p class="svc-l">Il sito</p>
       <h2 id="h-sito" class="h2 flap">Si apre, si legge, si prenota.</h2>
       <p class="svc-p">Una pagina sola, fatta per il telefono. Orari, menù o servizi, foto vere e un tasto per chiamare o prenotare.</p>
-      <div class="price"><b class="num">390€</b><span>metà all'inizio, metà alla consegna. Dominio a parte.</span></div>
-      <p class="svc-alt">Hai già un sito? Controllo e correzioni a 79€, in 48 ore, e paghi dopo.</p>
+      <div class="price"><b class="num">390&#8239;€</b><span>metà all'inizio, metà alla consegna. Dominio a parte.</span></div>
+      <p class="svc-alt">Hai già un sito? Controllo e correzioni a 79&#8239;€, in 48 ore, e paghi dopo.</p>
     </div>
   </div>
 </section>
@@ -115,7 +148,7 @@
       <p class="svc-l">La scheda Google</p>
       <h2 id="h-google" class="h2 flap">Su Google, tutto in ordine.</h2>
       <p class="svc-p">Categoria giusta, orari aggiornati, foto vere, telefono e WhatsApp. E una risposta a ogni recensione.</p>
-      <div class="price"><b class="num">79€</b><span>pronta in 48 ore, paghi dopo.</span></div>
+      <div class="price"><b class="num">79&#8239;€</b><span>pronta in 48 ore, paghi dopo.</span></div>
     </div>
   </div>
 </section>
@@ -127,12 +160,12 @@
       <p class="svc-l">Instagram</p>
       <h2 id="h-ig" class="h2 flap">Un profilo che ti somiglia.</h2>
       <p class="svc-p">8 post al mese con foto e testi, tutti con lo stesso stile. Tu pensi al negozio, il profilo lo seguo io.</p>
-      <div class="price"><b class="num">99€</b><span>il primo mese, poi 150€ al mese.</span></div>
+      <div class="price"><b class="num">99&#8239;€</b><span>il primo mese, poi 150&#8239;€ al mese.</span></div>
     </div>
   </div>
 </section>
 
-<div class="band-wrap" aria-hidden="true"><div class="band"><div class="band-in"><span>siti</span><i></i><span>schede Google</span><i></i><span>Instagram</span><i></i><span>grafiche</span><i></i><span>reel</span><i></i></div></div></div>
+<div class="band-wrap" aria-hidden="true"><div class="band"><div class="band-in"><span>siti</span><i></i><span>schede Google</span><i></i><span>Instagram</span><i></i><span>prova gratis</span><i></i></div></div></div>
 
 <section class="steps" id="come" data-theme="deep" aria-labelledby="h-come">
   <div class="wrap">
@@ -152,12 +185,15 @@
   <div class="wrap">
     <h2 id="h-prezzi" class="h2">Quanto costa<i class="dot" data-dot="prezzi" aria-hidden="true"></i><span class="sr">.</span></h2>
     <ul class="plist">
-      <li><div><h3>Sito di una pagina</h3><p>Metà all'inizio, metà alla consegna. Dominio a parte.</p></div><b class="roll" data-v="390">390€</b></li>
-      <li><div><h3>Controllo e correzioni del sito</h3><p>In 48 ore, paghi dopo.</p></div><b class="roll" data-v="79">79€</b></li>
-      <li><div><h3>Scheda Google sistemata</h3><p>In 48 ore, paghi dopo.</p></div><b class="roll" data-v="79">79€</b></li>
-      <li><div><h3>Instagram, primo mese</h3><p>Poi 150€ al mese, con 8 post e i testi.</p></div><b class="roll" data-v="99">99€</b></li>
+      <li><div><h3>Sito di una pagina</h3><p>Metà all'inizio, metà alla consegna. Dominio a parte.</p></div><b class="roll" data-v="390">390&#8239;€</b></li>
+      <li><div><h3>Controllo e correzioni del sito</h3><p>In 48 ore, paghi dopo.</p></div><b class="roll" data-v="79">79&#8239;€</b></li>
+      <li><div><h3>Scheda Google sistemata</h3><p>In 48 ore, paghi dopo.</p></div><b class="roll" data-v="79">79&#8239;€</b></li>
+      <li><div><h3>Instagram, primo mese</h3><p>Poi 150&#8239;€ al mese, con 8 post e i testi.</p></div><b class="roll" data-v="99">99&#8239;€</b></li>
     </ul>
-    <p class="plist-note">La prova sul tuo negozio è gratis.</p>
+    <div class="plist-cta">
+      <p class="plist-note">Prima di pagare, vedi la prova fatta sul tuo negozio.</p>
+      <a class="pill" data-wa href="{{WA}}" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>Chiedi la prova gratis</a>
+    </div>
   </div>
 </section>
 
@@ -165,12 +201,16 @@
   <div class="wrap ex-in">
     <div class="ex-text">
       <h2 id="h-esempi" class="h2">Tre esempi, prima e dopo<i class="dot" data-dot="esempi" aria-hidden="true"></i><span class="sr">.</span></h2>
-      <p class="lead">Un sito, un profilo Instagram e una scheda Google, su tre negozi inventati. Scorri e guarda cosa cambia.</p>
+      <p class="lead">Qui c'è il sito di Trattoria da Ines, un negozio inventato, prima e dopo il mio lavoro. Trascina la riga e guarda cosa cambia sul telefono.</p>
+      <a class="ex-go" href="../">Guarda anche Instagram e la scheda Google<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
-    <a class="ex-card" href="../">
-      <span class="ex-img"><img src="../og.jpg?v=2" width="1200" height="630" alt="Anteprima della pagina con i tre esempi prima e dopo" loading="lazy" decoding="async"></span>
-      <span class="ex-go">Apri gli esempi<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></span>
-    </a>
+    <div class="ba" style="--x:50%">
+      <img class="ba-img ba-b" src="img/ba-prima.webp" width="672" height="1512" loading="lazy" decoding="async" alt="Prima: il vecchio sito di Trattoria da Ines sul telefono. Testo minuscolo, menù in PDF, numero di telefono dentro un'immagine e un banner dei cookie che copre tutto.">
+      <img class="ba-img ba-a" src="img/ba-dopo.webp" width="672" height="1512" loading="lazy" decoding="async" alt="Dopo: il sito nuovo, fatto per il telefono. Titolo grande, foto della pasta fatta a mano, tasti Prenota, WhatsApp e Arrivare, il menù di oggi.">
+      <span class="ba-line" aria-hidden="true"><i class="ba-h"><svg viewBox="0 0 24 24"><path d="M9.5 7 4.5 12l5 5M14.5 7l5 5-5 5"/></svg></i></span>
+      <span class="ba-tag ba-tag-b" aria-hidden="true">Prima</span><span class="ba-tag ba-tag-a" aria-hidden="true">Dopo</span>
+      <input class="ba-in" type="range" min="0" max="100" value="50" step="1" aria-label="Confronta il sito prima e dopo">
+    </div>
   </div>
 </section>
 
@@ -181,11 +221,11 @@
       <p class="sign-me">Sono Maicol Kumar. Lavoro da solo, quindi parli sempre con me, dalla prima prova all'ultima modifica.</p>
       <h2 id="h-contatti" class="h2 sign-h">Scrivimi.</h2>
       <p class="lead">Ti preparo una prova gratis sul tuo negozio, in 48 ore.</p>
-      <a class="tel" href="tel:+393715399463">371 539 9463</a>
       <div class="actions">
         <a class="pill" data-wa href="{{WA}}" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>Scrivimi su WhatsApp</a>
         <button class="ghost" type="button" id="copy"><svg class="i" aria-hidden="true"><use href="#i-copy"/></svg><span aria-live="polite">Copia il numero</span></button>
       </div>
+      <a class="tel" href="tel:+393715399463">371 539 9463</a>
       <a class="ig" href="https://www.instagram.com/mk.digital_studio/" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-ig"/></svg>@mk.digital_studio</a>
       <figure class="qr">{{QR}}<figcaption>Dal computer? Inquadralo col telefono e si apre WhatsApp.</figcaption></figure>
     </div>
@@ -197,15 +237,16 @@
 <footer class="foot" data-theme="ink">
   <div class="wrap foot-in">
     <p class="foot-brand">mk digital studio<b>.</b></p>
-    <p class="foot-tag">siti · seo · social · motion</p>
+    <p class="foot-tag">Siti, schede Google e profili Instagram.</p>
     <p class="foot-small">Maicol Kumar. Lavoro con negozi e locali in tutta Italia.</p>
     <details class="foot-credits">
       <summary>Crediti</summary>
-      <p>Font Mona Sans e Inter (SIL Open Font License). 3D con three.js, animazioni con GSAP e Lenis. Foto libere da diritti (CC0 e pubblico dominio) trovate con Openverse. Licenze nel file <a href="https://github.com/Maicol1623/portfolio/blob/gh-pages/LICENSES.md">LICENSES.md</a>.</p>
+      <p>Font Mona Sans, Inter e Instrument Serif (SIL Open Font License). 3D con three.js, animazioni con GSAP e Lenis. Ricerca dei negozi con i dati di OpenStreetMap (© OpenStreetMap contributors, licenza ODbL), tramite Photon di komoot e Nominatim. Foto libere da diritti (CC0 e pubblico dominio) trovate con Openverse. Licenze nel file <a href="https://github.com/Maicol1623/portfolio/blob/gh-pages/LICENSES.md">LICENSES.md</a>.</p>
     </details>
   </div>
 </footer>
 
+<a class="pill dock" data-wa href="{{WA}}" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>Scrivimi su WhatsApp</a>
 <canvas id="gl" aria-hidden="true"></canvas>
 </body>
 </html>

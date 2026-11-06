@@ -53,6 +53,12 @@ Archivo, Instrument Serif, Instrument Sans e Bodoni Moda, con licenza SIL Open F
 
 Mona Sans e Inter, file latin di Google Fonts non modificati, con licenza SIL Open Font License 1.1. Copyright e testo della licenza sono in `studio/fonts/OFL.txt`.
 
+Il sito personale usa anche Instrument Serif da `assets/fonts` (vedi sopra), nel telefono d'esempio.
+
+## Dati della mappa (sito personale)
+
+La ricerca del negozio legge i dati di OpenStreetMap, © OpenStreetMap contributors, con licenza Open Database License (ODbL), tramite i servizi Photon di komoot e Nominatim. La pagina non salva questi dati: il negozio scelto resta solo nel browser di chi lo cerca.
+
 ## Foto
 
 Foto libere da diritti (CC0 e pubblico dominio) trovate con Openverse. Gli autori sono elencati in fondo alla pagina, sotto "Crediti delle foto".
