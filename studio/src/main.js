@@ -96,9 +96,11 @@ function start3D() {
   const camera = new THREE.PerspectiveCamera(FOV, 1, 1, 400);
   camera.position.set(0, 0, CAM_Z);
   let vw = 1, vh = 1, k = 1; // k: world units per css px on the z = 0 plane
+  let lastSig = ''; // what the last drawn frame showed, to skip drawing the same thing again
   function resize() {
     vw = W.innerWidth; vh = W.innerHeight;
     renderer.setSize(vw, vh, false);
+    lastSig = '';
     camera.aspect = vw / vh; camera.updateProjectionMatrix();
     k = (2 * CAM_Z * Math.tan((FOV * Math.PI) / 360)) / vh;
   }
@@ -646,6 +648,17 @@ function start3D() {
       if (motion) for (const n in landSeen) if (keys[n] && ys < keys[n].y - 2) delete landSeen[n];
       if (motion && words.length) markWords();
     }
+    // with no scene on screen and the dot standing still, the last frame is still right: skip drawing it again (saves battery)
+    if (motion) {
+      let still = true;
+      for (const s of stages) if (s.visible) { still = false; break; }
+      if (still) {
+        const p = dot.position, sc = dot.scale, qq = dot.quaternion;
+        const sig = [p.x, p.y, p.z, sc.x, sc.y, sc.z, qq.x, qq.y, qq.z, qq.w, dot.visible ? 1 : 0, heroRing.visible ? heroRing.material.opacity : -1].map((v) => Math.round(v * 1e4)).join();
+        if (sig === lastSig) return;
+        lastSig = sig;
+      } else lastSig = '';
+    }
     renderer.render(scene, camera);
   }
   const wob = { v: 0 };
@@ -661,7 +674,8 @@ function start3D() {
   let lastY = -1;
   if (motion) gsap.ticker.add(frame);
   else { const loop = () => { const y = W.pageYOffset; if (dirty || y !== lastY) { lastY = y; dirty = false; frame(); } requestAnimationFrame(loop); }; requestAnimationFrame(loop); W.addEventListener('resize', () => { dirty = true; }); }
-  D.addEventListener('visibilitychange', () => { last = performance.now(); });
+  D.addEventListener('visibilitychange', () => { last = performance.now(); lastSig = ''; });
+  renderer.domElement.addEventListener('webglcontextrestored', () => { lastSig = ''; });
 
   // ring that spreads from the full stop when the dot lands in it
   const heroRing = mesh(new THREE.RingGeometry(1, 1.14, 64), new THREE.MeshBasicMaterial({ color: 0xfdc800, transparent: true, opacity: 0, depthWrite: false }));
