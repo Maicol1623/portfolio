@@ -11,7 +11,7 @@ const KEYS = ['amenity', 'shop', 'craft', 'tourism', 'leisure', 'office', 'healt
 const CAT = {
   restaurant: 'Ristorante', fast_food: 'Locale', food_court: 'Ristorante', cafe: 'Bar', bar: 'Bar', pub: 'Pub',
   ice_cream: 'Gelateria', bakery: 'Panetteria', pastry: 'Pasticceria', confectionery: 'Pasticceria', deli: 'Gastronomia',
-  hairdresser: 'Parrucchiere', beauty: 'Centro estetico', cosmetics: 'Profumeria', massage: 'Massaggi', tattoo: 'Tatuaggi',
+  hairdresser: 'Parrucchiere', beauty: 'Centro estetico', nail_salon: 'Centro estetico', cosmetics: 'Profumeria', massage: 'Massaggi', tattoo: 'Tatuaggi',
   butcher: 'Macelleria', greengrocer: 'Frutta e verdura', wine: 'Enoteca', alcohol: 'Enoteca', beverages: 'Bevande',
   clothes: 'Abbigliamento', shoes: 'Calzature', boutique: 'Boutique', jewelry: 'Gioielleria', optician: 'Ottica',
   florist: 'Fioraio', books: 'Libreria', gift: 'Regali', toys: 'Giocattoli', hardware: 'Ferramenta', doityourself: 'Fai da te',
@@ -23,7 +23,7 @@ const CAT = {
 };
 const FOOD = ['restaurant', 'food_court', 'deli', 'pasta'];
 const BAKE = ['bakery', 'pastry', 'confectionery', 'cafe', 'bar', 'coffee'];
-const HAIR = ['hairdresser', 'beauty', 'nail_salon'];
+const HAIR = ['hairdresser']; // beauty and nails get the photo-free look: our salon photos are of hair
 // cuisines that our trattoria photos suit; any other cuisine gets the photo-free look
 const ITALIAN = /(^|;|_)(italian|regional|pizza|pasta|piedmontese|tuscan|sicilian|neapolitan|emilian|ligurian|venetian|roman|sardinian|apulian|lombard|trattoria|osteria|local)($|;|_)/;
 
@@ -43,8 +43,17 @@ export function catOf(value, tags) {
 }
 
 function clean(s) { return String(s || '').replace(/\s+/g, ' ').trim(); }
+/** shortened at a word boundary, never in the middle of a word */
+function cut(s, n) {
+  if (s.length <= n) return s;
+  const t = s.slice(0, n + 1), i = t.lastIndexOf(' ');
+  let r = i > n * 0.6 ? t.slice(0, i) : s.slice(0, n);
+  // and not on a little word like "dei" or "con"
+  for (let k = 0; k < 3; k++) r = r.replace(/[\s,.;:–-]+$/, '').replace(/\s+(e|ed|di|da|dal|del|dei|della|delle|degli|con|per|in|la|il|lo|le|gli|al|alla|ai|&)$/i, '');
+  return r;
+}
 
-/** search: returns up to 5 places, best first */
+/** search: returns up to 5 places, best first (the caller aborts it after a few seconds) */
 export async function findShops(q, signal) {
   const params = new URLSearchParams({ q: clean(q).slice(0, 80), limit: '10', bbox: ITALY });
   const url = PHOTON + '?' + params.toString() + KEYS.map((k) => '&osm_tag=' + k).join('');
@@ -60,7 +69,7 @@ export async function findShops(q, signal) {
     seen.add(id);
     const c = (f.geometry && f.geometry.coordinates) || [];
     out.push({
-      id, name: clean(p.name).slice(0, 60), value: p.osm_value || '', key: p.osm_key || '',
+      id, name: cut(clean(p.name), 60), value: p.osm_value || '', key: p.osm_key || '',
       street: clean(p.street), num: clean(p.housenumber), city: clean(p.city || p.town || p.village || p.county),
       cat: catOf(p.osm_value), kind: kindOf(p.osm_value), lon: c[0], lat: c[1],
     });
@@ -80,6 +89,7 @@ export async function shopDetails(id, signal) {
   const e = p.extratags || {}, a = p.address || {};
   return {
     hours: clean(e.opening_hours), cuisine: clean(e.cuisine), hairdresser: clean(e.hairdresser), web: clean(e.website || e['contact:website']).slice(0, 120),
+    phone: !!(e.phone || e['contact:phone']),
     street: clean(a.road), num: clean(a.house_number), city: clean(a.city || a.town || a.village || a.municipality),
   };
 }

@@ -1,8 +1,10 @@
 Copyright 2022 The Mona Sans Project Authors (https://github.com/github/mona-sans), with Reserved Font Name "Mona"
 Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter)
 
-mona-sans.woff2 and inter.woff2 are the unmodified latin files served by Google Fonts
-(Mona Sans v4 and Inter v20, variable).
+mk-grotesk.woff2 is a Modified Version of Mona Sans v4 (the variable latin file served by Google Fonts),
+reduced to the characters the page uses, weights 550-900 and widths 100-125. Because "Mona" is a
+Reserved Font Name, the modified font is named MK Grotesk.
+inter.woff2 is Inter v20 (variable) reduced the same way, weights 400-700.
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:

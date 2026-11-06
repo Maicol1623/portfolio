@@ -20,11 +20,11 @@ Senza JavaScript, o con le animazioni ridotte nel telefono, la pagina resta comp
 
 Pagina: https://maicol1623.github.io/portfolio/studio/
 
-Il sito di mk digital studio in 3D. Il punto giallo del logo apre la pagina, salta sulle parole, monta una pagina web, cade su una mappa e diventa il segnaposto, gira le foto di un profilo Instagram e alla fine torna nel logo. Chi scrive il nome del suo negozio lo vede nelle scene e nel messaggio WhatsApp.
+Il sito di mk digital studio. Il punto giallo del logo è una pallina che si muove come una vera: cade nel titolo, diventa il tasto del sito nel telefono, poi il segnaposto sulla mappa, salta tra le foto di Instagram e alla fine fa da tasto Invia. In alto chi cerca il suo negozio lo trova su OpenStreetMap e vede come diventano il sito, la scheda Google e il profilo, con il messaggio WhatsApp già scritto.
 
-- `studio/src/index.tpl.html` e `studio/src/main.js`: il sorgente. `studio/index.html` e `studio/js/studio.js` si rifanno con `python3 studio/src/build.py <cartella node_modules con three ed esbuild>`.
-- `studio/css/studio.css`: stile. `studio/fonts`: Mona Sans e Inter. `studio/img`: le scene come immagini, per i telefoni senza WebGL.
+- `studio/src`: il sorgente. `index.tpl.html` è la pagina, `main.js` le scene, `dot.js` la pallina, `shopfinder.js` la ricerca, `tiles.js` la griglia Instagram. `studio/index.html` e `studio/js/studio.js` si rifanno con `python3 studio/src/build.py <cartella node_modules con esbuild>` (per il QR serve il pacchetto Python `segno`).
+- `studio/css/studio.css`: stile. `studio/fonts`: MK Grotesk (Mona Sans ridotto e rinominato) e Inter. `studio/img`: le foto dei negozi inventati e le immagini prima e dopo.
 
-Con le animazioni ridotte le scene restano ferme e già montate; senza WebGL o senza JavaScript si vedono le immagini delle scene.
+Con le animazioni ridotte, o senza JavaScript, ogni punto resta fermo al suo posto e la pagina è completa. Senza JavaScript la ricerca apre WhatsApp con il nome scritto.
 
 Licenze di librerie, font e foto: `LICENSES.md`.
