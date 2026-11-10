@@ -846,17 +846,40 @@ function examples() {
       aa: 'Dopo: il profilo Instagram di Nora Parrucchieri. Post con lo stesso stile, foto dei lavori e listino, orari e indirizzo nella descrizione e un tasto per prenotare.' },
   };
   let hint = null;
-  // the native thumb (64px) travels between its half widths: the line follows the thumb, not the raw value
+  // the line sits exactly where the finger or mouse is, from 0 to 100 per cent; the range input stays for keyboard and screen readers
   const setV = (v) => {
-    const Wd = box.clientWidth || 1, px = 32 + (v / 100) * (Wd - 64);
-    box.style.setProperty('--x', ((px / Wd) * 100).toFixed(2) + '%');
+    v = Math.max(0, Math.min(100, v));
+    box.style.setProperty('--x', v.toFixed(2) + '%');
     tb.style.opacity = v < 14 ? '0' : '1'; ta.style.opacity = v > 86 ? '0' : '1';
     inp.setAttribute('aria-valuetext', 'Prima ' + Math.round(v) + ' per cento, dopo ' + (100 - Math.round(v)) + ' per cento');
   };
   const stop = () => { if (hint) { hint.kill(); hint = null; } };
+  const atX = (x) => { const r = box.getBoundingClientRect(); const v = ((x - r.left - box.clientLeft) / (box.clientWidth || 1)) * 100; inp.value = Math.round(Math.max(0, Math.min(100, v))); setV(v); };
+  let drag = null;
+  box.addEventListener('pointerdown', (e) => {
+    if (e.button > 0) return;
+    stop();
+    drag = { id: e.pointerId, x: e.clientX, y: e.clientY, on: e.pointerType === 'mouse' };
+    if (drag.on) { e.preventDefault(); atX(e.clientX); inp.focus({ preventScroll: true }); try { box.setPointerCapture(e.pointerId); } catch (_) {} }
+  });
+  box.addEventListener('pointermove', (e) => {
+    if (!drag || drag.id !== e.pointerId) return;
+    if (!drag.on) {
+      const dx = Math.abs(e.clientX - drag.x), dy = Math.abs(e.clientY - drag.y);
+      if (dx < 6 || dx < dy) return;
+      drag.on = true;
+      try { box.setPointerCapture(e.pointerId); } catch (_) {}
+    }
+    atX(e.clientX);
+  });
+  const end = (e) => {
+    if (!drag || drag.id !== e.pointerId) return;
+    if (e.type === 'pointerup' && !drag.on && Math.abs(e.clientX - drag.x) < 6 && Math.abs(e.clientY - drag.y) < 6) atX(e.clientX);
+    drag = null;
+  };
+  box.addEventListener('pointerup', end);
+  box.addEventListener('pointercancel', (e) => { if (drag && drag.id === e.pointerId) drag = null; });
   inp.addEventListener('input', () => { stop(); setV(+inp.value); });
-  inp.addEventListener('pointerdown', stop);
-  W.addEventListener('resize', () => setV(+inp.value));
   setV(+inp.value);
   function show(id, focus) {
     const ex = EX[id];
